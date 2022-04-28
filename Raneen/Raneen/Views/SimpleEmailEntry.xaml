@@ -20,15 +20,15 @@
         <StackLayout>
             <border:SfBorder
                 BackgroundColor="{DynamicResource Gray-Bg}"
-                BorderColor="{Binding Path=IsFocused, Source={x:Reference EmailEntry}, Converter={x:StaticResource ColorConverter}, ConverterParameter=3}"
-                Style="{StaticResource LoginFormBorderlessEntryBorderStyle}">
-
+                Style="{StaticResource LoginFormBorderlessEntryBorderStyle}"
+                CornerRadius="5">
+                
                 <Grid ColumnDefinitions="*, Auto">
 
-                    <control:BorderlessEntry
+                    <control:BorderlessEntry            
                         x:Name="EmailEntry"
                         Margin="15,0"
-                        HeightRequest="40"
+                        HeightRequest="50"
                         Keyboard="Email"
                         FontSize="13"
                         Placeholder="Enter Email"
@@ -40,11 +40,11 @@
                     </control:BorderlessEntry>
 
                     <!--  Label to display error icon  -->
-                    <Label
+                   <!-- <Label
                         Grid.Column="1"
                         IsVisible="{Binding Path=IsVisible, Source={x:Reference ValidationLabel}}"
                         Style="{StaticResource ErrorIconLabelStyle}"
-                        Text="{StaticResource Error}" />
+                        Text="{StaticResource Error}" /> -->
 
                 </Grid>
             </border:SfBorder>

@@ -15,14 +15,8 @@ namespace Raneen.Views
         public accountPage()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
         }
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            NavigationPage.SetHasNavigationBar(this, false);
-        }
-
+        
         private void logIn(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SimpleLoginPage());

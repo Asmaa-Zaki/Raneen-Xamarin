@@ -56,13 +56,13 @@
                         VerticalOptions="CenterAndExpand">
 
                         <!--  Label to display the title of this page  -->
-               <!--         <Label
+                        <!--         <Label
                             FontSize="20"
                             Style="{StaticResource TitleLabelStyle}"
                             Text="Log In" /> -->
 
                         <!--  Label to display the description of this page  -->
-                       <!-- <Label
+                        <!-- <Label
                             Grid.Row="1"
                             Margin="0,8"
                             Style="{StaticResource DescriptionLabelStyle}"
@@ -78,16 +78,15 @@
                             <Label Text="Password" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
                             <!--  Entry to get password from user  -->
                             <border:SfBorder
+                                CornerRadius="5"
                                 BackgroundColor="{DynamicResource Gray-Bg}"
-                                BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                                 Style="{StaticResource LoginFormBorderlessEntryBorderStyle}">
                                 <Grid ColumnDefinitions="*, Auto">
-
                                     <control:BorderlessEntry
                                         x:Name="PasswordEntry"
                                         Margin="15,0"
                                         FontSize="13"
-                                        HeightRequest="40"
+                                        HeightRequest="50"
                                         IsPassword="True"
                                         Placeholder="Enter Password"
                                         PlaceholderColor="Gray"
@@ -137,43 +136,12 @@
                             Margin="0,16"
                             Command="{Binding LoginCommand}"
                             HorizontalOptions="Fill"
-                            Style="{StaticResource GradientButtonStyle}"
+                            BackgroundColor="#4e8767"
+                            TextColor="White"
+                            Padding="15"
+                            CornerRadius="10"
                             Text="LOG IN" />
 
-
-                        <Label
-                            Grid.Row="6"
-                            Style="{StaticResource DescriptionLabelStyle}"
-                            Text="Or create an account using social media"
-                            TextColor="{DynamicResource Gray-800}" />
-
-                        <!--  Login through facebook account  -->
-                        <buttons:SfButton
-                            Grid.Row="7"
-                            Margin="0,16,0,16"
-                            BackgroundColor="{DynamicResource FacebookBlue}"
-                            Command="{Binding SocialMediaLoginCommand}"
-                            CornerRadius="20"
-                            HeightRequest="40">
-                            <buttons:SfButton.Content>
-                                <StackLayout
-                                    HorizontalOptions="CenterAndExpand"
-                                    Orientation="Horizontal"
-                                    VerticalOptions="Center">
-                                    <Label
-                                        FontFamily="FontIcons"
-                                        FontSize="18"
-                                        Text="&#xe735;"
-                                        TextColor="{DynamicResource Gray-White}"
-                                        VerticalTextAlignment="Center" />
-                                    <Label
-                                        FontFamily="Montserrat-Medium"
-                                        FontSize="16"
-                                        Text="Login with Facebook"
-                                        TextColor="{DynamicResource Gray-White}" />
-                                </StackLayout>
-                            </buttons:SfButton.Content>
-                        </buttons:SfButton>
 
                     </Grid>
 
@@ -183,7 +151,7 @@
                         Spacing="1"
                         VerticalOptions="End">
 
-                       <!-- <StackLayout>
+                        <!-- <StackLayout>
                             <OnIdiom
                                 x:DataType="Thickness"
                                 Default="0, 48, 0, 0"
@@ -193,7 +161,7 @@
                         <Label
                             Style="{StaticResource DescriptionLabelStyle}"
                             Text="Don't have an account?"
-                            TextColor="{DynamicResource Gray-900}"
+                            TextColor="Gray"
                             VerticalTextAlignment="Center" />
 
                         <!--  Sign-up button  -->
@@ -201,23 +169,42 @@
                             Command="{Binding SignUpCommand}"
                             Style="{StaticResource TransparentButtonStyle}"
                             Text="Sign Up"
-                            TextColor="{DynamicResource PrimaryColor}" />
-
+                            TextColor='Black' />
+                      
                     </StackLayout>
-
+                    <BoxView HeightRequest="1" Color="LightGray" IsVisible="{Binding IsSeparatorVisible}" Margin="0, 15"/>
+                    <!--  Login through facebook account  -->
+                    <buttons:SfButton
+                            Grid.Row="7"
+                            Margin="0,16,0,16"
+                            BackgroundColor="#b83939"
+                            TextColor="White"
+                            Padding="15"
+                            FontAttributes="Bold"
+                            CornerRadius="10"
+                            Command="{Binding SocialMediaLoginCommand}"
+                            HeightRequest="50">
+                        <buttons:SfButton.Content>
+                            <StackLayout
+                                    HorizontalOptions="CenterAndExpand"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="Center">
+                                <Label
+                                        FontFamily="FontIcons"
+                                        FontSize="18"
+                                        Text="&#xe74d;"
+                                        TextColor="{DynamicResource Gray-White}"
+                                        VerticalTextAlignment="Center" />
+                                <Label
+                                        FontFamily="Montserrat-Medium"
+                                        FontSize="16"
+                                        Text="Login with Google"
+                                        TextColor="{DynamicResource Gray-White}" />
+                            </StackLayout>
+                        </buttons:SfButton.Content>
+                    </buttons:SfButton>
                 </StackLayout>
             </ScrollView>
-
-            <!--  Close button  -->
-            <buttons:SfButton
-                Margin="8"
-                Command="{Binding BackButtonCommand}"
-                FontSize="20"
-                HorizontalOptions="End"
-                Style="{StaticResource IconButtonStyle}"
-                Text="{StaticResource Close}"
-                TextColor="{DynamicResource Steel}"
-                VerticalOptions="Start" />
 
         </Grid>
     </ContentPage.Content>

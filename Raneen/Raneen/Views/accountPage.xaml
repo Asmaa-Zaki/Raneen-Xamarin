@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Raneen.Views.accountPage"
-             BackgroundImageSource="skybg.png"
+             BackgroundImageSource="skybg"
              Shell.NavBarIsVisible = "False"
              >
     <ContentPage.Content>
