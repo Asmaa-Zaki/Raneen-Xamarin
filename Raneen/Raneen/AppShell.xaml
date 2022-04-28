@@ -15,13 +15,14 @@
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="Red" />
+                <Setter Property="Shell.TitleColor" Value="Black" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="white" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
                 <Setter Property="Shell.TabBarUnselectedColor" Value="Gray"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="Red"/>
+                <Setter Property="NavigationPage.HasNavigationBar" Value="False"></Setter>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" /> 
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />

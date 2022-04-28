@@ -12,7 +12,9 @@
     xmlns:local="clr-namespace:Raneen.Views"
     xmlns:viewModel="clr-namespace:Raneen.ViewModels"
     BackgroundColor="{DynamicResource Gray-200}"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="False"
+    Title="Sign In"
+    >
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -54,23 +56,26 @@
                         VerticalOptions="CenterAndExpand">
 
                         <!--  Label to display the title of this page  -->
-                        <Label
+               <!--         <Label
                             FontSize="20"
                             Style="{StaticResource TitleLabelStyle}"
-                            Text="Log In" />
+                            Text="Log In" /> -->
 
                         <!--  Label to display the description of this page  -->
-                        <Label
+                       <!-- <Label
                             Grid.Row="1"
                             Margin="0,8"
                             Style="{StaticResource DescriptionLabelStyle}"
                             Text="Let's get to work"
-                            TextColor="{DynamicResource Gray-800}" />
-
-                        <!--  Entry to get email ID from user  -->
-                        <local:SimpleEmailEntry Grid.Row="2" Padding="0,24" />
+                            TextColor="{DynamicResource Gray-800}" /> -->
+                        <StackLayout Grid.Row="2">
+                            <Label Text="Email" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                            <!--  Entry to get email ID from user  -->
+                            <local:SimpleEmailEntry Grid.Row="2"/>
+                        </StackLayout>
 
                         <StackLayout Grid.Row="3">
+                            <Label Text="Password" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
                             <!--  Entry to get password from user  -->
                             <border:SfBorder
                                 BackgroundColor="{DynamicResource Gray-Bg}"
@@ -81,9 +86,11 @@
                                     <control:BorderlessEntry
                                         x:Name="PasswordEntry"
                                         Margin="15,0"
+                                        FontSize="13"
                                         HeightRequest="40"
                                         IsPassword="True"
-                                        Placeholder="Password"
+                                        Placeholder="Enter Password"
+                                        PlaceholderColor="Gray"
                                         Style="{StaticResource BorderlessEntryStyle}"
                                         Text="{Binding Password.Value}">
                                         <Entry.Behaviors>
@@ -176,12 +183,12 @@
                         Spacing="1"
                         VerticalOptions="End">
 
-                        <StackLayout.Padding>
+                       <!-- <StackLayout>
                             <OnIdiom
                                 x:DataType="Thickness"
                                 Default="0, 48, 0, 0"
                                 Phone="0" />
-                        </StackLayout.Padding>
+                        </StackLayout> -->
 
                         <Label
                             Style="{StaticResource DescriptionLabelStyle}"

@@ -26,6 +26,7 @@ namespace Raneen.Views
         private void logIn(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SimpleLoginPage());
+
         }
     }
 }
