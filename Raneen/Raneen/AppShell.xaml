@@ -2,7 +2,6 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:Raneen.Views"
-       Title="Raneen"
        x:Class="Raneen.AppShell">
 
     <!--
@@ -24,7 +23,7 @@
                 <Setter Property="Shell.TabBarUnselectedColor" Value="Gray"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="Red"/>
             </Style>
-            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" /> 
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>
@@ -34,7 +33,7 @@
         <ShellContent Title="Category" Icon="category.png" ContentTemplate="{DataTemplate local:ProductPage}" />
         <ShellContent Title="Offers" Icon="offer.png" ContentTemplate="{DataTemplate local:ProductPage}" />
         <ShellContent Title="Cart" Icon="cart.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
-        <ShellContent Title="Account" Icon="account.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
+        <ShellContent Title="Account" Icon="account.png" ContentTemplate="{DataTemplate local:accountPage}" />
     </TabBar>
 
     <!--

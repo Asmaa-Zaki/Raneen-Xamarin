@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Raneen.Views.accountPage"
+             BackgroundImageSource="skybg.png" >
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame CornerRadius='10' VerticalOptions="CenterAndExpand" HorizontalOptions="Center"  WidthRequest="200">
+            <StackLayout HeightRequest="250" BackgroundColor="white
+                         ">
+                <StackLayout VerticalOptions="CenterAndExpand">
+                    <Label Text="If U Have an Account" HorizontalOptions="Center" FontAttributes="Bold" Margin="15" TextColor="Black" />
+                        <Button CornerRadius="5" Text="Sign In" HorizontalOptions="Center"
+                                Background="red" TextColor="White" WidthRequest="170" 
+                                HeightRequest="40" Clicked="logIn"/>
+                        <Label Text="Or" HorizontalOptions="Center" FontAttributes="Bold" TextColor="Black"/>
+                        <Button CornerRadius="5" Text="Sign Up" HorizontalOptions="Center" BackgroundColor="DimGray" TextColor="White" WidthRequest="170" HeightRequest="40"/>
+                </StackLayout>
+            </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
