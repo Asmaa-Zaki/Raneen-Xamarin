@@ -40,18 +40,18 @@
                     </control:BorderlessEntry>
 
                     <!--  Label to display error icon  -->
-                   <!-- <Label
+                    <Label
                         Grid.Column="1"
                         IsVisible="{Binding Path=IsVisible, Source={x:Reference ValidationLabel}}"
                         Style="{StaticResource ErrorIconLabelStyle}"
-                        Text="{StaticResource Error}" /> -->
+                        Text="{StaticResource Error}" /> 
 
                 </Grid>
             </border:SfBorder>
 
             <Label
                 x:Name="ValidationLabel"
-                Margin="15,-3,0,0"
+                Margin="15,0,0,0"
                 FontSize="12"
                 IsVisible="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}"
                 Style="{StaticResource SimpleLabelStyle}"

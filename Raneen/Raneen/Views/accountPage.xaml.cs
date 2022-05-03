@@ -22,5 +22,10 @@ namespace Raneen.Views
             Navigation.PushAsync(new SimpleLoginPage());
 
         }
+
+        private void signUp(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SimpleSignUpPage());
+        }
     }
 }

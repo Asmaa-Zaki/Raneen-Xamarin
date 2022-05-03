@@ -14,6 +14,7 @@
     BackgroundColor="{DynamicResource Gray-200}"
     NavigationPage.HasNavigationBar="False"
     Title="Sign In"
+    Shell.ForegroundColor="Black"
     >
 
     <ContentPage.Resources>
@@ -75,7 +76,7 @@
                         </StackLayout>
 
                         <StackLayout Grid.Row="3">
-                            <Label Text="Password" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                            <Label Text="Password" TextColor="Black" FontAttributes="Bold" FontSize="16" Margin="0, 23 ,0, 0"/>
                             <!--  Entry to get password from user  -->
                             <border:SfBorder
                                 CornerRadius="5"
@@ -140,7 +141,7 @@
                             TextColor="White"
                             Padding="15"
                             CornerRadius="10"
-                            Text="LOG IN" />
+                            Text="Sign IN" />
 
 
                     </Grid>
@@ -169,7 +170,8 @@
                             Command="{Binding SignUpCommand}"
                             Style="{StaticResource TransparentButtonStyle}"
                             Text="Sign Up"
-                            TextColor='Black' />
+                            TextColor='Black' 
+                            Clicked="SignUp"/>
                       
                     </StackLayout>
                     <BoxView HeightRequest="1" Color="LightGray" IsVisible="{Binding IsSeparatorVisible}" Margin="0, 15"/>

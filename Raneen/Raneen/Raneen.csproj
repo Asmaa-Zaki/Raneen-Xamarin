@@ -106,5 +106,8 @@
     <EmbeddedResource Update="Views\SimpleLoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\SimpleSignUpPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

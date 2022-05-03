@@ -4,23 +4,23 @@ using Xamarin.Forms.Xaml;
 namespace Raneen.Views
 {
     /// <summary>
-    /// Page to login with user name and password
+    /// Page to sign in with user details.
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SimpleLoginPage
+    public partial class SimpleSignUpPage
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SimpleLoginPage" /> class.
+        /// Initializes a new instance of the <see cref="SimpleSignUpPage" /> class.
         /// </summary>
-        public SimpleLoginPage()
+        public SimpleSignUpPage()
         {
             this.InitializeComponent();
         }
 
-        private void SignUp(object sender, System.EventArgs e)
+        private void SignIn(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new SimpleSignUpPage());
+            Navigation.PushAsync(new SimpleLoginPage());
         }
     }
 }

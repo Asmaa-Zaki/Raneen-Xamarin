@@ -14,6 +14,7 @@ namespace Raneen.ViewModels
         #region Fields
 
         private ValidatableObject<string> password;
+        private ValidatableObject<string> email;
 
         #endregion
 
@@ -57,6 +58,23 @@ namespace Raneen.ViewModels
             }
         }
 
+        public ValidatableObject<string> Email
+        {
+            get
+            {
+                return this.email;
+            }
+
+            set
+            {
+                if(this.email == value)
+                {
+                    return;
+                }
+                this.SetProperty(ref this.email, value);
+            }
+        }
+
         #endregion
 
         #region Command
@@ -91,9 +109,9 @@ namespace Raneen.ViewModels
         /// <returns>Returns the fields are valid or not</returns>
         public bool AreFieldsValid()
         {
-           // bool isEmailValid = this.Email.Validate();
+            bool isEmailValid = this.Email.Validate();
             bool isPasswordValid = this.Password.Validate();
-            return /*isEmailValid &&*/ isPasswordValid;
+            return isEmailValid && isPasswordValid;
         }
 
         /// <summary>
@@ -102,6 +120,7 @@ namespace Raneen.ViewModels
         private void InitializeProperties()
         {
             this.Password = new ValidatableObject<string>();
+            this.Email = new ValidatableObject<string>();
         }
 
         /// <summary>
@@ -110,6 +129,7 @@ namespace Raneen.ViewModels
         private void AddValidationRules()
         {
             this.Password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Password Required" });
+            this.Email.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Email Required" });
         }
 
         /// <summary>

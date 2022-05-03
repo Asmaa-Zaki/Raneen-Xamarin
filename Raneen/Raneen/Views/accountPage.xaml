@@ -16,7 +16,10 @@
                                 Background="red" TextColor="White" WidthRequest="170" 
                                 HeightRequest="40" Clicked="logIn"/>
                         <Label Text="Or" HorizontalOptions="Center" FontAttributes="Bold" TextColor="Black"/>
-                        <Button CornerRadius="5" Text="Sign Up" HorizontalOptions="Center" BackgroundColor="DimGray" TextColor="White" WidthRequest="170" HeightRequest="40"/>
+                        <Button CornerRadius="5" Text="Sign Up" HorizontalOptions="Center"
+                                BackgroundColor="DimGray" TextColor="White"
+                                WidthRequest="170" HeightRequest="40" 
+                                Clicked="signUp"/>
                 </StackLayout>
             </StackLayout>
             </Frame>
