@@ -10,6 +10,7 @@
         <Label x:Name="productCat"/>
         <Image x:Name="productImage"/>
         <Button Text="Load" Clicked="load" />
+        <Button Text="LoadTany" Clicked="loadTany" />
         <ListView x:Name="list"></ListView>
     </StackLayout>
 </ContentPage>

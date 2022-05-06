@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Raneen.Views.CartPage"
+             x:Name="Cart"
+             Title="Cart"
+             >
+
+    <ContentPage.Content>
+        <Grid BackgroundColor="#ededed">
+            <Grid x:Name="emptyCard" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                <StackLayout Grid.Row="0" HorizontalOptions="Center">
+                    <Label  Text="Cart is Empty" TextColor="Gray" FontSize="20" Padding="0,40"/>
+                </StackLayout>
+                <StackLayout Grid.Row="1">
+                    <Image Source="cartEmpty"/>
+                </StackLayout>
+                <StackLayout Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Line HeightRequest="20"/>
+                    <Button Text="Start Shopping Now" BackgroundColor="red" TextColor="White" TextTransform="None"
+                            CornerRadius="5" Padding="12,0"/>
+                </StackLayout>
+            </Grid>
+
+            <Grid x:Name="notEmptyCard">
+                    <ListView  x:Name="listView" Grid.Row="0" Grid.RowSpan="8" BackgroundColor="Aqua">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                            <ViewCell>
+                                <StackLayout BackgroundColor="#eee"
+                        Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding image}" />
+                                        <Label Text="{Binding Id}"
+                                TextColor="#f35e20" />
+                                        <Label Text="{Binding Name}"
+                                HorizontalOptions="EndAndExpand"
+                                TextColor="#503026" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                <StackLayout Grid.Row="8"  VerticalOptions="EndAndExpand" BackgroundColor="Green">
+                    <Grid>
+                        <Label Text="Asmahjgas" VerticalOptions="Start" HeightRequest="30"/>
+                    </Grid>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
