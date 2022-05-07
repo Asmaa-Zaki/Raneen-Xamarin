@@ -21,6 +21,7 @@ namespace Raneen
 
             DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
+            //Yasser
         }
 
         protected override void OnStart()
