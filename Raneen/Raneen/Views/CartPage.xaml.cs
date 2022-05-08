@@ -21,7 +21,7 @@ namespace Raneen.Views
             InitializeComponent();
             
         }
-        ObservableCollection<Items> cartItems = new ObservableCollection<Items>();
+        ObservableCollection<ProductModel> cartItems = new ObservableCollection<ProductModel>();
 
         protected override void OnAppearing()
         {
