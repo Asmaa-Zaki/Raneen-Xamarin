@@ -22,9 +22,9 @@ namespace Raneen.Views
 
         HttpClient httpClient = new HttpClient();
 
-        cat allProducts = new cat();
-        catInf allCat = new catInf();
-       
+        Products allProducts = new Products();
+        Categories allCat = new Categories();
+
 
         public ProductPage()
         {
@@ -36,12 +36,12 @@ namespace Raneen.Views
         private async void load(object sender, EventArgs e)
         {
             string allProductsasString = await httpClient.GetStringAsync(URL);
-            allProducts = JsonConvert.DeserializeObject<cat>(allProductsasString);
+            allProducts = JsonConvert.DeserializeObject<Products>(allProductsasString);
             await DisplayAlert("kkk", $"{allProducts.data.data[0].name}", "OK");
 
             productName.Text = allProducts.data.data[0].name;
             productName.TextColor = Color.Black;
-          //  productImage.Source = allProducts.Products[0].Image;
+            //  productImage.Source = allProducts.Products[0].Image;
         }
 
 
@@ -49,7 +49,7 @@ namespace Raneen.Views
         private async void loadTany(object sender, EventArgs e)
         {
             string allProductsasString = await httpClient.GetStringAsync(URL2);
-            allCat = JsonConvert.DeserializeObject<catInf>(allProductsasString);
+            allCat = JsonConvert.DeserializeObject<Categories>(allProductsasString);
             await DisplayAlert("kkk", $"{allCat.data.data[0].name}", "OK");
 
             productName.Text = allCat.data.data[0].name;

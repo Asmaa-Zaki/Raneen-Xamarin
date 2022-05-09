@@ -4,16 +4,16 @@ using System.Text;
 
 namespace Raneen.Models
 {
-    class cat
+    public class Products
     {
-       public Data data;
+        public Data data;
 
     }
-    class Data
+    public class Data
     {
         public List<Items> data;
     }
-    class Items
+    public class Items
     {
         public int id { get; set; }
         public double price { get; set; }
@@ -22,25 +22,11 @@ namespace Raneen.Models
         public string image { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public List<string> images;
-        public bool in_favorites;
-        public bool in_cart;
+        public List<string> images { get; set; }
+        public bool in_favorites { get; set; }
+        public bool in_cart { get; set; }
     }
 
 
-    class catInf
-    {
-        public catData data;
 
-    }
-    class catData
-    {
-        public List<catItems> data;
-    }
-    class catItems
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string image { get; set; }
-    }
 }
