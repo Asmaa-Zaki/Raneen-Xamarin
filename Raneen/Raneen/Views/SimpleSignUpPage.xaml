@@ -194,7 +194,6 @@
                                         Margin="15,0"
                                         FontSize="12"
                                         HeightRequest="50"
-                                        IsPassword="true"
                                         Placeholder="Enter Phone"
                                         Style="{StaticResource BorderlessEntryStyle}"
                                         Text="{Binding Phone.Value}">

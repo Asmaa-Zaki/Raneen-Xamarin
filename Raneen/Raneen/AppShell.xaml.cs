@@ -1,4 +1,5 @@
-﻿using Raneen.ViewModels;
+﻿using Raneen.Services;
+using Raneen.ViewModels;
 using Raneen.Views;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,14 @@ namespace Raneen
         public AppShell()
         {
             InitializeComponent();
-        //    Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-           // Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            initApi();
+
+        }
+
+        public async void initApi()
+        {
+            Requests httpClient = new Requests(); ;
+            var categoriesList = await httpClient.GetProducts();
         }
 
     }
