@@ -47,6 +47,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="Views\DetailePage.xaml.cs">
+			<DependentUpon>DetailePage.xaml</DependentUpon>
+		</Compile>
 		<Compile Update="Views\ProductsPage.xaml.cs">
 			<DependentUpon>ProductsPage.xaml</DependentUpon>
 		</Compile>
@@ -122,7 +125,7 @@
 		<EmbeddedResource Update="Views\CartPage.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Views\detailes.xaml">
+		<EmbeddedResource Update="Views\DetailePage.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Views\EmptyCartPage.xaml">

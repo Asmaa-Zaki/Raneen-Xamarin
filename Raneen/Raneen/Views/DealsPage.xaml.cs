@@ -23,7 +23,9 @@ namespace Raneen.Views
         {
             InitializeComponent();
         }
-
+        List<String> ids = new List<String>(){
+            "44","46","43"
+            };
         protected async override void OnAppearing()
         {
             base.OnAppearing();
@@ -31,11 +33,15 @@ namespace Raneen.Views
 
             Requests httpClient = new Requests(); ;
             var categoriesList = await httpClient.GetCategories();
-            CategoryTile.ItemsSource = categoriesList.data.data;
-            var productsList = await httpClient.GetProducts("43");
-            firstDeals.ItemsSource = productsList.data.data;
-            secondDeals.ItemsSource = productsList.data.data;
-            secondDeals2.ItemsSource = productsList.data.data;
+            var categories = categoriesList.data.data;
+            categories.RemoveAt(3);
+            CategoryTile.ItemsSource = categories;
+            var products1 = await httpClient.GetProducts(ids[0]);
+            var products2 = await httpClient.GetProducts(ids[1]);
+            var products3 = await httpClient.GetProducts(ids[2]);
+            deals1.ItemsSource = products1.data.data;
+            deals2.ItemsSource = products2.data.data;
+            deals3.ItemsSource = products3.data.data;
 
         }
 
@@ -48,11 +54,30 @@ namespace Raneen.Views
         private void productTabed(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             var obj = e.ItemData as Items;
-            Navigation.PushAsync(new detailes(obj));
+            Navigation.PushAsync(new DetailePage(obj));
         }
 
+        private void ShowMore(object sender, EventArgs e)
+        {
+            if (sender == but1)
+            {
+                Navigation.PushAsync(new ProductsPage(ids[0]));
+            }
+            else if (sender == but2)
+            {
+                Navigation.PushAsync(new ProductsPage(ids[1]));
+            }
+            else if (sender == but3)
+            {
+                Navigation.PushAsync(new ProductsPage(ids[2]));
+            }
+            else
+            {
+                return;
+            }
+        }
 
-        private void tabedCommand(object sender, EventArgs e)
+        private void AddToCart(object sender, EventArgs e)
         {
 
         }

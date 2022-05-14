@@ -47,7 +47,6 @@ namespace Raneen.Views
             SortPiker.ItemsSource = sortOptions;
             FilterPiker.ItemsSource = filterOptions;
             this.BindingContext = products;
-            //products = categoriesList.data.data as ObservableCollection<Items>;
             products = new ObservableCollection<Items>(categoriesList.data.data);
             ListViewTile.ItemsSource = products;
         }
@@ -55,10 +54,7 @@ namespace Raneen.Views
         private void itemTaped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             var product = e.ItemData as Items;
-            Navigation.PushAsync(new detailes(product));
-            //DisplayAlert("hi", $"{product.id}", "ox");
-            //Navigation.PushAsync(new DetailPage(product));
-
+            Navigation.PushAsync(new DetailePage(product));
         }
 
         private void changePiker(object sender, EventArgs e)
@@ -107,6 +103,11 @@ namespace Raneen.Views
         private void filterPiker(object sender, EventArgs e)
         {
             ListViewTile.ItemsSource = GetAllProducts(FilterPiker.SelectedIndex.ToString());
+        }
+
+        private void AddToCart(object sender, EventArgs e)
+        {
+
         }
     }
 

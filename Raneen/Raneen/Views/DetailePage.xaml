@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Raneen.Views.detailes"
-             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-             xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:rotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms" xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms" xmlns:behavior="clr-namespace:Raneen.Behaviors"
+             x:Class="Raneen.Views.DetailePage"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:rotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             Shell.ForegroundColor="Black"
              x:Name="CategoryTilePage"
              Title="raneen">
 
@@ -296,20 +298,13 @@
                             Orientation="Horizontal"
                             Spacing="10">
 
-                        <!--  Buy Now Button  -->
-                        
-                            <buttons:SfButton
-                                IsVisible="{OnIdiom Default=True,
-                                                    Phone=False}"
-                                Style="{StaticResource GradientButtonStyle}"
-                                Text="BUY NOW"
-                                WidthRequest="200" />
-  
-                        <!--  Add To Cart Button  -->
-                        
+
+
+                            <!--  Add To Cart Button  -->
+
                             <buttons:SfButton
                                 Margin="0"
-                               
+                               Clicked="AddToCart"
                                 CommandParameter="{Binding .}"
                                 HorizontalOptions="{OnIdiom Default=Center,
                                                             Phone=CenterAndExpand}"
@@ -319,7 +314,7 @@
                                 FontSize="20"
                                 HeightRequest="50"
                                 WidthRequest="350" />
-                        
+
                         </StackLayout>
 
                         <!--  Product Description  -->
