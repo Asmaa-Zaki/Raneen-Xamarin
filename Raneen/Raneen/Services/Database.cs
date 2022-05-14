@@ -23,6 +23,7 @@ namespace Raneen.Services
                 database = new SQLiteAsyncConnection(path);
                 await database.CreateTableAsync<UserModel>();
                 await database.CreateTableAsync<ProductModel>();
+                await database.CreateTableAsync<AddressModel>();
                 return database;
             }
         }
