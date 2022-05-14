@@ -2,17 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Raneen.Views.ProductPage"
-     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-            xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              Title="raneen">
 
 
-    <StackLayout>
-        <Label x:Name="productName" Text="asmaa"/>
-        <Label x:Name="productCat"/>
-        <Image x:Name="productImage"/>
-        <Button Text="Load" Clicked="load" />
-        <Button Text="LoadTany" Clicked="loadTany" />
-        <ListView x:Name="list"></ListView>
-    </StackLayout>
+    <ContentPage.Content>
+
+        <Label>Home</Label>
+    </ContentPage.Content>
 </ContentPage>

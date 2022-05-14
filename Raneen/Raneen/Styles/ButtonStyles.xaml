@@ -45,8 +45,9 @@
 
     <!--  Common style for Icon buttons  -->
     <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
+        <!--<Setter Property="BackgroundColor" Value="Red" />-->
         <Setter Property="FontFamily" Value="FontIcons" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
