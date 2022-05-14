@@ -11,9 +11,9 @@ using Xamarin.Forms.Xaml;
 namespace Raneen.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DetailePage : ContentPage
+    public partial class DetailPage : ContentPage
     {
-        public detailes(ProductModel obj)
+        public DetailPage(ProductModel obj)
         {
             InitializeComponent();
             Rotator.ItemsSource = obj.images;

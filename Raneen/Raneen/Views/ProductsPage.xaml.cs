@@ -54,7 +54,7 @@ namespace Raneen.Views
         private void itemTaped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             var product = e.ItemData as ProductModel;
-            Navigation.PushAsync(new detailes(product));
+            Navigation.PushAsync(new DetailPage(product));
             //DisplayAlert("hi", $"{product.id}", "ox");
             //Navigation.PushAsync(new DetailPage(product));
 
