@@ -10,8 +10,7 @@ namespace Raneen.Services
 {
     internal class Requests
     {
-        //will change 44 to catecory id
-        //public const string ProductsURL = "https://student.valuxapps.com/api/categories/44";
+        public const string ProductDetialesURL = "https://student.valuxapps.com/api/products/";
         public const string ProductsURL = "https://student.valuxapps.com/api/categories/";
         public const string CategoryURL = "https://student.valuxapps.com/api/categories";
 
@@ -24,6 +23,13 @@ namespace Raneen.Services
             return allCat;
         }
         public async Task<Products> GetProducts(string id)
+        {
+            string allProductsasString = await httpClient.GetStringAsync(ProductsURL + id);
+            Products allProducts = JsonConvert.DeserializeObject<Products>(allProductsasString);
+            return allProducts;
+        }
+
+        public async Task<Products> GetProductDetiales(string id)
         {
             string allProductsasString = await httpClient.GetStringAsync(ProductsURL + id);
             Products allProducts = JsonConvert.DeserializeObject<Products>(allProductsasString);

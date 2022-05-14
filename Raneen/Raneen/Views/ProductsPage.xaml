@@ -96,7 +96,7 @@
                                     HeightRequest="-1"
                                     Style="{StaticResource IconButtonStyle}"
                                     Text="♡"
-  
+                                    TextColor="Red"
                                     />
                                 </StackLayout>
                             </AbsoluteLayout>

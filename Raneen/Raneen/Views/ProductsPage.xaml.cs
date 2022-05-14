@@ -56,6 +56,8 @@ namespace Raneen.Views
         {
             var product = e.ItemData as Items;
             Navigation.PushAsync(new detailes(product));
+            //DisplayAlert("hi", $"{product.id}", "ox");
+            //Navigation.PushAsync(new DetailPage(product));
 
         }
 

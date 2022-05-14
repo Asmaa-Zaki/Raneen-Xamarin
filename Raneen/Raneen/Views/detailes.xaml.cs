@@ -16,6 +16,19 @@ namespace Raneen.Views
         public detailes(Items obj)
         {
             InitializeComponent();
+            Rotator.ItemsSource = obj.images;
+            ProductName.Text = obj.name;
+            ProductDiscription.Text = obj.description;
+
+            ProductPrice.Text = obj.price.ToString();
+            ProductActualPrice.Text = obj.old_price.ToString();
+            var rating = 3.5;
+            var DiscountPercent = obj.discount;
+
+            ProductRating.Value = rating;
+            //Text = "{'5.5', StringFormat='{}{0} Ratings'}"
+            //Text = "{Binding DiscountPercent, StringFormat=' ({0}% OFF)'}"
+
         }
     }
 }
