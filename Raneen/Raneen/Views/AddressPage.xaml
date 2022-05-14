@@ -11,7 +11,6 @@
     xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
     xmlns:control="clr-namespace:Raneen.Controls"
     xmlns:converter="clr-namespace:Raneen.Converters"
-    xmlns:datePicker="clr-namespace:Syncfusion.XForms.Pickers;assembly=Syncfusion.SfPicker.XForms"
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:Raneen.Views"
     xmlns:viewModel="clr-namespace:Raneen.ViewModels" xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
@@ -216,7 +215,7 @@
                                         HeightRequest="50"
                                         SelectedIndexChanged="showCity">
                                         <Picker.Items>
-                                            <x:String>djkfhdj</x:String>
+                                            <x:String>None</x:String>
                                         </Picker.Items>
                                     </Picker>
 
@@ -348,7 +347,8 @@
                             TextColor="White"
                             Padding="15"
                             CornerRadius="10"
-                            Text="Add Address" />
+                            Text="Add Address"
+                            Clicked="Save"/>
                     </StackLayout>
 
                     <StackLayout

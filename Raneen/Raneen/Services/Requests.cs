@@ -35,8 +35,5 @@ namespace Raneen.Services
             cat allProducts = JsonConvert.DeserializeObject<cat>(allProductsasString);
             return allProducts;
         }
-
-
-
     }
 }

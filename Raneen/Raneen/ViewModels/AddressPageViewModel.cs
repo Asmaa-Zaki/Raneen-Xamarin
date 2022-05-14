@@ -1,6 +1,8 @@
-﻿using Raneen.Validators;
+﻿using Raneen.Data;
+using Raneen.Validators;
 using Raneen.Validators.Rules;
 using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -12,6 +14,23 @@ namespace Raneen.ViewModels
     [Preserve(AllMembers = true)]
     public class AddressPageViewModel : LoginViewModel
     {
+        private List<String> states;
+
+        public List<String> States
+        {
+            get { return AddressData.states; }
+            set { states = value; }
+        }
+
+        private List<String> cities;
+
+        public List<String> Cities
+        {
+            get { return cities; }
+            set { cities = value; }
+        }
+
+
         #region Fields
 
         private ValidatableObject<string> fname;

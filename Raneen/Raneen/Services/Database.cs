@@ -24,6 +24,7 @@ namespace Raneen.Services
                 await database.CreateTableAsync<UserModel>();
                 await database.CreateTableAsync<ProductModel>();
                 await database.CreateTableAsync<AddressModel>();
+                await database.CreateTableAsync<CartModel>();
                 return database;
             }
         }
