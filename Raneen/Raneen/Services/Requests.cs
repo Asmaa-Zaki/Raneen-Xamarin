@@ -10,9 +10,10 @@ namespace Raneen.Services
 {
     internal class Requests
     {
-        public const string ProductDetialesURL = "https://student.valuxapps.com/api/products/";
         public const string ProductsURL = "https://student.valuxapps.com/api/categories/";
         public const string CategoryURL = "https://student.valuxapps.com/api/categories";
+        public const string BannersURL = "https://student.valuxapps.com/api/banners";
+        public const string HomeURL = "https://student.valuxapps.com/api/home";
 
         HttpClient httpClient = new HttpClient();
 
@@ -29,14 +30,19 @@ namespace Raneen.Services
             return allProducts;
         }
 
-        public async Task<cat> GetProductDetiales(string id)
+        public async Task<Banners> GetBanners()
         {
-            string allProductsasString = await httpClient.GetStringAsync(ProductsURL + id);
-            cat allProducts = JsonConvert.DeserializeObject<cat>(allProductsasString);
-            return allProducts;
+            string allBannersasString = await httpClient.GetStringAsync(BannersURL);
+            Banners allBanners = JsonConvert.DeserializeObject<Banners>(allBannersasString);
+            return allBanners;
         }
 
-
+        public async Task<HomeData> GetHomeData()
+        {
+            string homeasString = await httpClient.GetStringAsync(HomeURL);
+            HomeData homeData = JsonConvert.DeserializeObject<HomeData>(homeasString);
+            return homeData;
+        }
 
     }
 }
