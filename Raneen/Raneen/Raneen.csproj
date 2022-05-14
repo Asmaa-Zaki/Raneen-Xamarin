@@ -62,6 +62,9 @@
   </ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="Views\Home.xaml.cs">
+		  <DependentUpon>Home.xaml</DependentUpon>
+		</Compile>
 		<Compile Update="Views\DetailPage.xaml.cs">
 			<DependentUpon>DetailPage.xaml</DependentUpon>
 		</Compile>
@@ -149,9 +152,6 @@
 		<EmbeddedResource Update="Views\EmptyCartPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Views\ProductPage.xaml">
-			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-		</EmbeddedResource>
 		<EmbeddedResource Update="Views\SimpleEmailEntry.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</EmbeddedResource>
@@ -231,9 +231,6 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ContactEmailEntry.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProductPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SimpleEmailEntry.xaml">
       <Generator>MSBuild:Compile</Generator>
