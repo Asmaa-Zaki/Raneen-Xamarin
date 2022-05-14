@@ -47,7 +47,6 @@ namespace Raneen.Views
             SortPiker.ItemsSource = sortOptions;
             FilterPiker.ItemsSource = filterOptions;
             this.BindingContext = products;
-            //products = categoriesList.data.data as ObservableCollection<Items>;
             products = new ObservableCollection<ProductModel>(categoriesList.data.data);
             ListViewTile.ItemsSource = products;
         }
@@ -107,6 +106,11 @@ namespace Raneen.Views
         private void filterPiker(object sender, EventArgs e)
         {
             ListViewTile.ItemsSource = GetAllProducts(FilterPiker.SelectedIndex.ToString());
+        }
+
+        private void AddToCart(object sender, EventArgs e)
+        {
+
         }
     }
 

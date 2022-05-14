@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Raneen.Views.DealsPage"    
             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-            xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              x:Name="DealsTilePage"
              Title="raneen">
 
@@ -11,41 +13,6 @@
         <ResourceDictionary>
 
             <DataTemplate x:Key="ProductTemplate">
-
-                <StackLayout Spacing="8">
-                    <border:SfBorder
-                            BorderColor="{DynamicResource Gray-Bg}"
-                            BorderWidth="1"
-                            CornerRadius="8">
-                        <Image
-                                Aspect="AspectFill"
-                                BackgroundColor="{DynamicResource Gray-200}"
-                                HeightRequest="220"
-                                WidthRequest="150">
-                            <Image.Source>
-                                <UriImageSource
-                                        CacheValidity="14"
-                                        CachingEnabled="true"
-                                        Uri="{Binding image}" />
-                            </Image.Source>
-                        </Image>
-                    </border:SfBorder>
-
-                    <Label
-                            FontFamily="Montserrat-SemiBold"
-                            FontSize="14"
-                            LineBreakMode="TailTruncation"
-                            LineHeight="{OnPlatform Android=1.5,
-                                                    Default=-1}"
-                            Text="{Binding name}"
-                            TextColor="{DynamicResource Gray-900}" />
-
-
-                </StackLayout>
-
-            </DataTemplate>
-
-            <DataTemplate x:Key="ProductTemplate1">
 
                 <Grid RowDefinitions="Auto, Auto" RowSpacing="8" >
                     <!--  Category Image  -->
@@ -81,47 +48,13 @@
                                     Margin="0,1"
                                     Command="{Binding name}"
                                 CommandParameter="{Binding .}"
-                                Clicked="tabedCommand"
+                                Clicked="AddToCart"
                                     Style="{StaticResource GradientButtonStyle}"
                                     Text="Add To Cart"
                                     VerticalOptions="End"
                                     WidthRequest="245" />
 
                 </Grid>
-
-            </DataTemplate>
-
-            <DataTemplate x:Key="Product2Template">
-                <StackLayout Spacing="8">
-                    <border:SfBorder
-                            BorderColor="{DynamicResource Gray-Bg}"
-                            BorderWidth="1"
-                            CornerRadius="8">
-                        <Image
-                                Aspect="AspectFill"
-                                BackgroundColor="{DynamicResource Gray-200}"
-                                HeightRequest="120"
-                                WidthRequest="180">
-                            <Image.Source>
-                                <UriImageSource
-                                        CacheValidity="14"
-                                        CachingEnabled="true"
-                                        Uri="{Binding image}" />
-                            </Image.Source>
-                        </Image>
-                    </border:SfBorder>
-
-                    <Label
-                            FontFamily="Montserrat-SemiBold"
-                            FontSize="12"
-                            LineBreakMode="TailTruncation"
-                            MaxLines="2"
-                            LineHeight="{OnPlatform Android=1.5,
-                                                    Default=-1}"
-                            Text="{Binding name}"
-                            TextColor="{DynamicResource Gray-900}" />
-
-                </StackLayout>
 
             </DataTemplate>
 
@@ -136,13 +69,13 @@
                 RowSpacing="0">
                 <syncfusion:SfListView
                     Grid.Row="0"
-                x:Name="CategoryTile"
-                Padding="8"
-                AutoFitMode="Height"
+                    x:Name="CategoryTile"
+                    Padding="8"
+                    AutoFitMode="Height"
                     IsScrollBarVisible="False"
-                    HeightRequest="400"
-                Style="{StaticResource TransparentSelectionListView}"
-            ItemTapped="tabedCommandList">
+                    HeightRequest="370"
+                    Style="{StaticResource TransparentSelectionListView}"
+                    ItemTapped="tabedCommandList">
 
                     <syncfusion:SfListView.ItemTemplate>
                         <DataTemplate>
@@ -210,7 +143,8 @@
 
                     <buttons:SfButton
                         Margin="16,0,0,0"
-                        
+                       x:Name="but1"
+                        Clicked="ShowMore"
                         FontSize="12"
                         HeightRequest="38"
                         HorizontalOptions="EndAndExpand"
@@ -225,7 +159,7 @@
                     ItemSize="150"
                     ItemSpacing="8, 0, 8, 0"
                     ItemTemplate="{StaticResource ProductTemplate}"
-                    x:Name="firstDeals"
+                    x:Name="deals1"
                     Orientation="Horizontal"
                     ItemTapped="productTabed"
                     SelectionMode="None" />
@@ -246,7 +180,8 @@
 
                     <buttons:SfButton
                         Margin="16,0,0,0"
-                        
+                        Clicked="ShowMore"
+                        x:Name="but2"
                         FontSize="12"
                         HeightRequest="38"
                         HorizontalOptions="EndAndExpand"
@@ -261,8 +196,8 @@
                     ItemSize="150"
                     ItemSpacing="8, 0, 8, 0"
                     ItemTapped="productTabed"
-                    ItemTemplate="{StaticResource ProductTemplate1}"
-                    x:Name="secondDeals"
+                    ItemTemplate="{StaticResource ProductTemplate}"
+                    x:Name="deals2"
                     Orientation="Horizontal"
                     SelectionMode="None" />
                 <StackLayout
@@ -282,7 +217,8 @@
 
                     <buttons:SfButton
                         Margin="16,0,0,0"
-                        
+                        Clicked="ShowMore"
+                        x:Name="but3"
                         FontSize="12"
                         HeightRequest="38"
                         HorizontalOptions="EndAndExpand"
@@ -292,13 +228,13 @@
                 </StackLayout>
                 <syncfusion:SfListView
                     Grid.Row="6"
-                    HeightRequest="250"
+                    HeightRequest="280"
                     IsScrollBarVisible="False"
                     ItemSize="150"
                     ItemSpacing="8, 0, 8, 0"
                     ItemTapped="productTabed"
-                    ItemTemplate="{StaticResource ProductTemplate1}"
-                    x:Name="secondDeals2"
+                    ItemTemplate="{StaticResource ProductTemplate}"
+                    x:Name="deals3"
                     Orientation="Horizontal"
                     SelectionMode="None" />
 

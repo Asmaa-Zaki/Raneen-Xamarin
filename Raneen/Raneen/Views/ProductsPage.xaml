@@ -4,20 +4,37 @@
              x:Class="Raneen.Views.ProductsPage"    
              xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             Shell.ForegroundColor="Black"
              x:Name="catalogTilePage"
              Title="raneen">
 
     <StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Picker 
+            x:Name="SortPiker"  
+            SelectedIndexChanged="changePiker"
+            HorizontalOptions="Start"
+            Title="Sort"
+            TextColor="Gray"
+            TitleColor="Gray"
+            Margin="15,0"
+            FontSize="14"
+            WidthRequest="150"
+            HeightRequest="50"/>
 
-        <!--<Picker ItemsSource="{Binding FilterOptions}" SelectedItem="{Binding SelectedFilter}" Title="Filter" x:Name="filterPicker">
-
-        </Picker>-->
-        <Picker x:Name="SortPiker"  SelectedIndexChanged="changePiker" Title="Sort"/>
-        <Picker x:Name="FilterPiker"  SelectedIndexChanged="filterPiker" Title="Filter"/>
-
-
+            <Picker x:Name="FilterPiker"
+                    SelectedIndexChanged="filterPiker"
+                    HorizontalOptions="EndAndExpand"
+                    
+                    Title="Filter"
+                    TextColor="Gray"
+                    TitleColor="Gray"
+                    Margin="15,0"
+                    FontSize="14"
+                    WidthRequest="150"
+                    HeightRequest="50"/>
+        </StackLayout>
 
         <Grid
             ColumnSpacing="0"
@@ -84,8 +101,7 @@
                                 <!--  Favourite Icon  -->
                                 <StackLayout
                                         AbsoluteLayout.LayoutBounds="1, 1,.2,.98"
-                                        AbsoluteLayout.LayoutFlags="All"
-                                        >
+                                        AbsoluteLayout.LayoutFlags="All" >
                                     <buttons:SfButton
                                     Grid.Row="4"
                                     Grid.Column="1"
@@ -134,20 +150,16 @@
                                     Text="{Binding price, StringFormat='${0:0 }'}"
                                     TextColor="{DynamicResource Gray-Black}" />
 
-
-                            <!--
-                                            Command="{Binding ParentBindingContext.AddFavouriteCommand, Source={x:Reference productTileTemplate}}"
-        TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=4}" 
-        Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}"
-        -->
                             <!--  Add To Cart button  -->
                             <buttons:SfButton
                                     Grid.Row="4"
                                     Margin="0,1"
+                                    Grid.ColumnSpan="2"
                                     Command="{Binding}"
                                     Style="{StaticResource GradientButtonStyle}"
                                     Text="Add To Cart"
                                     VerticalOptions="End"
+                                Clicked="AddToCart"
                                     WidthRequest="245" />
 
                         </Grid>

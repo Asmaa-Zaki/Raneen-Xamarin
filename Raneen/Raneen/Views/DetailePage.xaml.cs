@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace Raneen.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class detailes : ContentPage
+    public partial class DetailePage : ContentPage
     {
         public detailes(ProductModel obj)
         {
@@ -28,6 +28,11 @@ namespace Raneen.Views
             ProductRating.Value = rating;
             //Text = "{'5.5', StringFormat='{}{0} Ratings'}"
             //Text = "{Binding DiscountPercent, StringFormat=' ({0}% OFF)'}"
+
+        }
+
+        private void AddToCart(object sender, EventArgs e)
+        {
 
         }
     }
