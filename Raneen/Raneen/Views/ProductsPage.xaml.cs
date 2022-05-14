@@ -42,8 +42,8 @@ namespace Raneen.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            //Requests httpClient = new Requests(); ;
-            //var categoriesList = await httpClient.GetProducts(id);
+            Requests httpClient = new Requests(); ;
+            var categoriesList = await httpClient.GetProducts(id);
             SortPiker.ItemsSource = sortOptions;
             FilterPiker.ItemsSource = filterOptions;
             this.BindingContext = products;

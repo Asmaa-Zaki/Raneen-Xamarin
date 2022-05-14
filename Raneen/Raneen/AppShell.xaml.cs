@@ -12,15 +12,15 @@ namespace Raneen
         public AppShell()
         {
             InitializeComponent();
-            initApi();
+            //initApi();
 
         }
 
-        public async void initApi()
-        {
-            Requests httpClient = new Requests(); ;
-            var categoriesList = await httpClient.GetProducts();
-        }
+        //public async void initApi()
+        //{
+        //    Requests httpClient = new Requests(); ;
+        //    var categoriesList = await httpClient.GetProducts();
+        //}
 
     }
 }
