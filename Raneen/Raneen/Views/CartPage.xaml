@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Raneen.Views.CartPage"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"   
              x:Name="Cart"
              Title="Cart"
              >
@@ -23,28 +25,63 @@
             </Grid>
 
             <Grid x:Name="notEmptyCard">
-                    <ListView  x:Name="listView" Grid.Row="0" Grid.RowSpan="8" BackgroundColor="Aqua">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
+                <syncfusion:SfListView x:Name="listView" Grid.Row="0" Grid.RowSpan="8" Margin="10"
+                          ItemSpacing="10" ItemSize="150" ItemTapped="itemTapped"
+                          >
+                    <syncfusion:SfListView.ItemTemplate>
+                        <DataTemplate>
                             <ViewCell>
-                                <StackLayout BackgroundColor="#eee"
-                        Orientation="Vertical">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Image Source="{Binding image}" />
-                                        <Label Text="{Binding Id}"
-                                TextColor="#f35e20" />
-                                        <Label Text="{Binding Name}"
-                                HorizontalOptions="EndAndExpand"
-                                TextColor="#503026" />
+                                <Grid BackgroundColor="White">
+                                    <StackLayout  Margin="10, 20" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" >
+                                        <Image Source="{Binding image}" Margin="10" HeightRequest="80" WidthRequest="80" BackgroundColor="Black"/>
                                     </StackLayout>
-                                </StackLayout>
+                                    <StackLayout Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="6" >
+                                        <Label Margin="0,26,0,0" Text="{Binding name}"
+                                            TextColor="Black"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="EGP" TextColor="Red" FontAttributes="Bold"/>
+                                            <Label Text="{Binding price}" TextColor="Red" FontAttributes="Bold"/>
+                                        </StackLayout>
+                                    </StackLayout>
+
+                                    <buttons:SfButton CommandParameter="{Binding .}" Margin="2, -2"  Grid.Row="3" Grid.Column="3" FontAttributes="Bold" Clicked="removeProduct" Text="-" CornerRadius="5" BackgroundColor="SlateGray">
+                                        <buttons:SfButton.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="removeProduct">
+                                            </TapGestureRecognizer>
+                                        </buttons:SfButton.GestureRecognizers>
+                                    </buttons:SfButton>
+                                    <Label Text="{Binding id}" TextColor="Black" Grid.Row="3" Grid.Column="4" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+                                    <buttons:SfButton CommandParameter="{Binding .}" Margin="2, -2"  Grid.Row="3" Grid.Column="5" Clicked="addProduct" FontAttributes="Bold" Text="+" CornerRadius="5" BackgroundColor="DarkSlateGray">
+                                        <buttons:SfButton.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="addProduct">
+                                            </TapGestureRecognizer>
+                                        </buttons:SfButton.GestureRecognizers>
+                                    </buttons:SfButton>
+
+                                    <Label Grid.Row="4"  Grid.ColumnSpan="9" HorizontalOptions="End" FontFamily="FontIcons" Text="&#xe716;" TextColor="OrangeRed" Margin="0, -4,10,10" FontSize="19">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="remove"></TapGestureRecognizer>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
                             </ViewCell>
                         </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                <StackLayout Grid.Row="8"  VerticalOptions="EndAndExpand" BackgroundColor="Green">
+                    </syncfusion:SfListView.ItemTemplate>
+                </syncfusion:SfListView>
+     
+                <StackLayout Grid.Row="8"  VerticalOptions="EndAndExpand"  BackgroundColor="White" Padding="5,0">
                     <Grid>
-                        <Label Text="Asmahjgas" VerticalOptions="Start" HeightRequest="30"/>
+                        <StackLayout Grid.Column="0" Grid.Row="0" VerticalOptions="Center" Margin="10,0,0,0">
+                            <Label Text="Total Cost:" FontSize="12" TextColor="Gray"/>
+
+                            <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
+                                <Label Text="EGP" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label x:Name="TotalCost" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+                            <buttons:SfButton Text="Proceed To Checkout" BackgroundColor="Red" TextColor="White" Margin="25,6" CornerRadius="5"/>
+                        </StackLayout>
                     </Grid>
                 </StackLayout>
             </Grid>

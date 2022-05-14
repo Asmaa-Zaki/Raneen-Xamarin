@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\ecommerce.json" />
     <None Remove="Data\errorAndEmpty.json" />
     <None Remove="Images\EmptyCart.svg" />
     <None Remove="Resources\Fonts\Montserrat-Bold.ttf" />
@@ -16,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Data\ecommerce.json" />
     <EmbeddedResource Include="Data\errorAndEmpty.json" />
     <EmbeddedResource Include="Images\EmptyCart.svg" />
     <EmbeddedResource Include="Resources\Fonts\Montserrat-Bold.ttf" />
@@ -32,9 +34,12 @@
     <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="20.1.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.Cards" Version="20.1.0.51" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="20.1.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="20.1.0.51" />
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="20.1.0.51" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="20.1.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="20.1.0.51" />
     <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="20.1.0.51" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
@@ -107,7 +112,7 @@
     <EmbeddedResource Update="Views\CartPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\EmptyCartPage.xaml">
+    <EmbeddedResource Update="Views\ContactEmailEntry.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ProductPage.xaml">
