@@ -13,19 +13,19 @@ namespace Raneen.Models
     {
         public List<ProductModel> data;
     }
-    class catInf
-    {
-        public catData data;
+    //class catInf
+    //{
+    //    public catData data;
 
-    }
-    class catData
-    {
-        public List<catItems> data;
-    }
-    class catItems
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string image { get; set; }
-    }
+    //}
+    //class catData
+    //{
+    //    public List<catItems> data;
+    //}
+    //class catItems
+    //{
+    //    public int id { get; set; }
+    //    public string name { get; set; }
+    //    public string image { get; set; }
+    //}
 }

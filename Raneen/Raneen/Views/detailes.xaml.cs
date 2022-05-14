@@ -13,7 +13,7 @@ namespace Raneen.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class detailes : ContentPage
     {
-        public detailes(Items obj)
+        public detailes(ProductModel obj)
         {
             InitializeComponent();
             Rotator.ItemsSource = obj.images;

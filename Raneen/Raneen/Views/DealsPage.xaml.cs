@@ -47,7 +47,7 @@ namespace Raneen.Views
 
         private void productTabed(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            var obj = e.ItemData as Items;
+            var obj = e.ItemData as ProductModel;
             Navigation.PushAsync(new detailes(obj));
         }
 

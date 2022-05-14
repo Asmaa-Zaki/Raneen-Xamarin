@@ -26,10 +26,10 @@ namespace Raneen.Views
 
         protected override void OnAppearing()
         {
-            cartItems.Add(new Items() { id = 1, name = "fvbbv ghgh ghh bhjbjnhb hjgjgj mghjg jghjgj jghjhgj jhgjg", price = 15.00, });
-            cartItems.Add(new Items() { id = 2, name = "s", price = 1, });
-            cartItems.Add(new Items() {id = 3, name = "s", price = 1 });
-            cartItems.Add(new Items() { id = 4, name = "s", price = 1, });
+            cartItems.Add(new ProductModel() { id = 1, name = "fvbbv ghgh ghh bhjbjnhb hjgjgj mghjg jghjgj jghjhgj jhgjg", price = 15.00, });
+            cartItems.Add(new ProductModel() { id = 2, name = "s", price = 1, });
+            cartItems.Add(new ProductModel() {id = 3, name = "s", price = 1 });
+            cartItems.Add(new ProductModel() { id = 4, name = "s", price = 1, });
             TotalCost.Text = cartItems.Sum(item => item.price).ToString();
 
             base.OnAppearing();
@@ -50,7 +50,7 @@ namespace Raneen.Views
 
         private void removeProduct(object sender, EventArgs e)
         {
-            newId = int.Parse(((sender as SfButton).CommandParameter as Items).id.ToString());
+            newId = int.Parse(((sender as SfButton).CommandParameter as ProductModel).id.ToString());
             int oldId = newId;
             newId = newId - 1;
             var product = cartItems.FirstOrDefault(item => item.id == oldId);
@@ -81,7 +81,7 @@ namespace Raneen.Views
         private void addProduct(object sender, EventArgs e)
         {
            // Console.WriteLine(((sender as SfButton).CommandParameter as Items).id);
-            newId= int.Parse(((sender as SfButton).CommandParameter as Items).id.ToString());
+            newId= int.Parse(((sender as SfButton).CommandParameter as ProductModel).id.ToString());
             int oldId = newId;
             newId = newId + 1;
             var product = cartItems.FirstOrDefault(item => item.id == newId);
@@ -103,7 +103,7 @@ namespace Raneen.Views
             }
             else
             {
-                var product = e.ItemData as Items;
+                var product = e.ItemData as ProductModel;
                 DisplayAlert("", product.name, "ok", "cancel");
             }
         }

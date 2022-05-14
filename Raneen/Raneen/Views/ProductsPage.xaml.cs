@@ -32,7 +32,7 @@ namespace Raneen.Views
                 "1000 : price",
             };
 
-        ObservableCollection<Items> products;
+        ObservableCollection<ProductModel> products;
         public ProductsPage(string _id)
         {
             InitializeComponent();
@@ -48,13 +48,13 @@ namespace Raneen.Views
             FilterPiker.ItemsSource = filterOptions;
             this.BindingContext = products;
             //products = categoriesList.data.data as ObservableCollection<Items>;
-            products = new ObservableCollection<Items>(categoriesList.data.data);
+            products = new ObservableCollection<ProductModel>(categoriesList.data.data);
             ListViewTile.ItemsSource = products;
         }
 
         private void itemTaped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            var product = e.ItemData as Items;
+            var product = e.ItemData as ProductModel;
             Navigation.PushAsync(new detailes(product));
             //DisplayAlert("hi", $"{product.id}", "ox");
             //Navigation.PushAsync(new DetailPage(product));
@@ -64,42 +64,42 @@ namespace Raneen.Views
         private void changePiker(object sender, EventArgs e)
         {
 
-            List<Items> unSortedList = new List<Items>(products);
-            List<Items> sortedList;
+            List<ProductModel> unSortedList = new List<ProductModel>(products);
+            List<ProductModel> sortedList;
             switch (SortPiker.SelectedItem)
             {
                 case "price":
-                    sortedList = unSortedList.OrderBy(product => product.price).ToList<Items>();
-                    products = new ObservableCollection<Items>(sortedList);
+                    sortedList = unSortedList.OrderBy(product => product.price).ToList<ProductModel>();
+                    products = new ObservableCollection<ProductModel>(sortedList);
                     break;
                 case "name":
-                    sortedList = unSortedList.OrderBy(product => product.name).ToList<Items>();
-                    products = new ObservableCollection<Items>(sortedList);
+                    sortedList = unSortedList.OrderBy(product => product.name).ToList<ProductModel>();
+                    products = new ObservableCollection<ProductModel>(sortedList);
                     break;
             }
             ListViewTile.ItemsSource = products;
         }
 
-        ObservableCollection<Items> GetAllProducts(string _filterKeyword = null)
+        ObservableCollection<ProductModel> GetAllProducts(string _filterKeyword = null)
         {
             if (!string.IsNullOrWhiteSpace(_filterKeyword))
             {
                 if (_filterKeyword == "0")
                 {
-                    return new ObservableCollection<Items>(products.Where(x => x.price <= 500).ToList());
+                    return new ObservableCollection<ProductModel>(products.Where(x => x.price <= 500).ToList());
                 }
                 else if (_filterKeyword == "1")
                 {
-                    return new ObservableCollection<Items>(products.Where(x => (x.price >= 500 && x.price <= 1000)).ToList());
+                    return new ObservableCollection<ProductModel>(products.Where(x => (x.price >= 500 && x.price <= 1000)).ToList());
                 }
                 else
                 {
-                    return new ObservableCollection<Items>(products.Where(x => x.price >= 1000).ToList());
+                    return new ObservableCollection<ProductModel>(products.Where(x => x.price >= 1000).ToList());
                 }
             }
             else
             {
-                return new ObservableCollection<Items>(products);
+                return new ObservableCollection<ProductModel>(products);
             }
 
         }

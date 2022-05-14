@@ -22,17 +22,17 @@ namespace Raneen.Services
             Categories allCat = JsonConvert.DeserializeObject<Categories>(allCategoriesasString);
             return allCat;
         }
-        public async Task<Products> GetProducts(string id)
+        public async Task<cat> GetProducts(string id)
         {
             string allProductsasString = await httpClient.GetStringAsync(ProductsURL + id);
-            Products allProducts = JsonConvert.DeserializeObject<Products>(allProductsasString);
+            cat allProducts = JsonConvert.DeserializeObject<cat>(allProductsasString);
             return allProducts;
         }
 
-        public async Task<Products> GetProductDetiales(string id)
+        public async Task<cat> GetProductDetiales(string id)
         {
             string allProductsasString = await httpClient.GetStringAsync(ProductsURL + id);
-            Products allProducts = JsonConvert.DeserializeObject<Products>(allProductsasString);
+            cat allProducts = JsonConvert.DeserializeObject<cat>(allProductsasString);
             return allProducts;
         }
 

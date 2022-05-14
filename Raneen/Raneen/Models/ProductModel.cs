@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Raneen.Models
 {
-    internal class ProductModel
+    public class ProductModel
     {
         [PrimaryKey]
         public int id { get; set; }
