@@ -1,5 +1,12 @@
-﻿using Raneen.Validators;
+﻿using FacebookLogin.Models;
+using Newtonsoft.Json;
+using Plugin.FacebookClient;
+using Raneen.Validators;
 using Raneen.Validators.Rules;
+using Raneen.Views;
+using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -16,6 +23,7 @@ namespace Raneen.ViewModels
         private ValidatableObject<string> password;
         private ValidatableObject<string> email;
 
+        private IFacebookClient facebookClient;
         #endregion
 
         #region Constructor
@@ -31,6 +39,7 @@ namespace Raneen.ViewModels
             this.SignUpCommand = new Command(this.SignUpClicked);
             this.ForgotPasswordCommand = new Command(this.ForgotPasswordClicked);
             this.SocialMediaLoginCommand = new Command(this.SocialLoggedIn);
+            this.facebookClient = CrossFacebookClient.Current;
         }
 
         #endregion
@@ -166,9 +175,79 @@ namespace Raneen.ViewModels
         /// Invoked when social media login button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void SocialLoggedIn(object obj)
+        private async void SocialLoggedIn(object obj)
         {
             // Do something
+            Debug.WriteLine("HERE!!");
+            try
+            {
+                if (facebookClient.IsLoggedIn)
+                {
+                    facebookClient.Logout();
+                }
+
+                EventHandler<FBEventArgs<string>> userDataDelegate = null;
+
+                userDataDelegate = async (object sender, FBEventArgs<string> e) =>
+                {
+                    if (e == null) return;
+
+                    switch (e.Status)
+                    {
+                        case FacebookActionStatus.Completed:
+                            try
+                            {
+
+                                Debug.WriteLine("Data:" + e.Data);
+                                Debug.WriteLine("Message:" + e.Message);
+
+                                var facebookProfile = await Task.Run(() => JsonConvert.DeserializeObject<FacebookProfile>(e.Data));
+                                Console.WriteLine(facebookProfile.email);
+                                //Preferences.Set("userEmail", facebookProfile.email);
+                                //Application.Current.Properties.Add("userLogin", facebookProfile);
+                                await App.Current.MainPage.Navigation.PushModalAsync(new CategoryPage());
+
+                                //var profile = new JsonFacebookProfile()
+                                //{
+                                //    email = facebookProfile.email,
+                                //    firstName = facebookProfile.first_name,
+                                //    lastName = facebookProfile.last_name,
+                                //    userId = facebookProfile.id
+                                //};
+
+                                //string jsonFacebookProfile = JsonConvert.SerializeObject(profile);
+
+                                //Debug.WriteLine("Request Body: " + jsonFacebookProfile);
+                            }
+                            catch (Exception ex)
+                            {
+
+                                Debug.WriteLine("Exception: " + ex);
+                            }
+                            break;
+                        case FacebookActionStatus.Canceled:
+                            Debug.WriteLine("Facebook Auth canceled");
+                            break;
+                    }
+
+                    //Xamarin essential shared pref
+
+                    facebookClient.OnUserData -= userDataDelegate;
+                };
+
+                facebookClient.OnUserData += userDataDelegate;
+
+                string[] fbRequestFields = { "email", "first_name", "birthday", "last_name" };
+                string[] fbPermisions = { "email" };
+                FacebookResponse<string> faceResponse = await facebookClient.RequestUserDataAsync(fbRequestFields, fbPermisions);
+
+                Debug.WriteLine("FaceResponse: " + faceResponse.Data + "||" + faceResponse.Status + "||" + faceResponse.Message);
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
         }
 
         #endregion
