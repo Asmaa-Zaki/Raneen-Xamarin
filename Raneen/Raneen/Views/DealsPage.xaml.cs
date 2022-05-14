@@ -31,7 +31,7 @@ namespace Raneen.Views
             base.OnAppearing();
             //your code here;
 
-            Requests httpClient = new Requests(); ;
+            Requests httpClient = new Requests();
             var categoriesList = await httpClient.GetCategories();
             var categories = categoriesList.data.data;
             categories.RemoveAt(3);
