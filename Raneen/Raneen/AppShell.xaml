@@ -24,15 +24,15 @@
                 <Setter Property="Shell.TabBarTitleColor" Value="Red"/>
                 <Setter Property="NavigationPage.HasNavigationBar" Value="False"></Setter>
             </Style>
-            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" /> 
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Home" Icon="home.png" ContentTemplate="{DataTemplate local:ProductPage}" />
-        <ShellContent Title="Category" Icon="category.png" ContentTemplate="{DataTemplate local:ProductPage}" />
-        <ShellContent Title="Offers" Icon="offer.png" ContentTemplate="{DataTemplate local:ProductPage}" />
+        <ShellContent Title="Home" Icon="home.png" ContentTemplate="{DataTemplate local:AddressPage}" />
+        <ShellContent Title="Category" Icon="category.png" ContentTemplate="{DataTemplate local:CategoryPage}" />
+        <ShellContent Title="Deals" Icon="offer.png" ContentTemplate="{DataTemplate local:DealsPage}" />
         <ShellContent Title="Cart" Icon="cart.png" ContentTemplate="{DataTemplate local:CartPage}" />
         <ShellContent Title="Account" Icon="account.png" ContentTemplate="{DataTemplate local:accountPage}" />
     </TabBar>

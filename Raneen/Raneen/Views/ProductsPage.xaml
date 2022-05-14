@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Raneen.Views.ProductsPage"    
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             x:Name="catalogTilePage"
+             Title="raneen">
+
+    <StackLayout>
+
+        <!--<Picker ItemsSource="{Binding FilterOptions}" SelectedItem="{Binding SelectedFilter}" Title="Filter" x:Name="filterPicker">
+
+        </Picker>-->
+        <Picker x:Name="SortPiker"  SelectedIndexChanged="changePiker" Title="Sort"/>
+        <Picker x:Name="FilterPiker"  SelectedIndexChanged="filterPiker" Title="Filter"/>
+
+
+
+        <Grid
+            ColumnSpacing="0"
+            RowDefinitions="Auto, *"
+            RowSpacing="0">
+
+            <!--  ListView for catalog  -->
+            <listView:SfListView
+                x:Name="ListViewTile"
+                Grid.Row="1"
+                Padding="8"
+                AutoFitMode="Height"
+                HorizontalOptions="FillAndExpand"
+                IsStickyHeader="False"
+                ItemSpacing="0, 8, 8, 8"
+                ItemTapped="itemTaped"
+                
+                Style="{StaticResource TransparentSelectionListView}">
+
+                <listView:SfListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid
+                                Margin="0"
+                                ColumnDefinitions="4*, 1*"
+                                RowDefinitions="Auto, Auto, Auto"
+                                RowSpacing="0">
+                            <!--  Product Image  -->
+                            <Image
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Margin="0,0,0,8"
+                                    Aspect="Fill"
+                                    BackgroundColor="{DynamicResource Gray-200}"
+                                    HeightRequest="200"
+                                    HorizontalOptions="{core:OnPlatformOrientationLayoutOptions AndroidPhonePortrait=FillAndExpand,
+                                                                                                AndroidPhoneLandscape=StartAndExpand,
+                                                                                                iOSPhonePortrait=FillAndExpand,
+                                                                                                iOSPhoneLandscape=StartAndExpand,
+                                                                                                AndroidTabletPortrait=FillAndExpand,
+                                                                                                AndroidTabletLandscape=StartAndExpand,
+                                                                                                iOSTabletPortrait=FillAndExpand,
+                                                                                                iOSTabletLandscape=StartAndExpand}"
+                                    WidthRequest="{OnIdiom Phone=183,
+                                                           Tablet=224,
+                                                           Desktop=224}">
+                                <Image.Source>
+                                    <UriImageSource
+                                            CacheValidity="14"
+                                            CachingEnabled="true"
+                                            Uri="{Binding image}" />
+                                </Image.Source>
+
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                            Command="{Binding Path=BindingContext.TapCommand, Source = {x:Reference ListViewTile}}"
+                                            CommandParameter="{Binding}" />
+                                </Image.GestureRecognizers>
+
+                            </Image>
+
+                            <AbsoluteLayout Grid.ColumnSpan="2">
+                                <!--  Favourite Icon  -->
+                                <StackLayout
+                                        AbsoluteLayout.LayoutBounds="1, 1,.2,.98"
+                                        AbsoluteLayout.LayoutFlags="All"
+                                        >
+                                    <buttons:SfButton
+                                    Grid.Row="4"
+                                    Grid.Column="1"
+                                    Margin="0,0,0,1"
+                                    Padding="0"
+                                    CommandParameter="{Binding}"
+                                    FontSize="24"
+                                    HeightRequest="-1"
+                                    Style="{StaticResource IconButtonStyle}"
+                                    Text="♡"
+                                    TextColor="Red"
+                                    />
+                                </StackLayout>
+                            </AbsoluteLayout>
+
+
+
+                            <!--  Product Name  -->
+                            <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Margin="8,0,0,4"
+                                    FontSize="14"
+                                    HorizontalOptions="StartAndExpand"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1"
+                                    Style="{StaticResource TitleLabelStyle}"
+                                    Text="{Binding name}" />
+
+                            <Label
+                                    Grid.Row="2"
+                                        Margin="0,6,0,1"
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        Text="{Binding old_price, StringFormat='${0:0.00}'}"
+                                        TextDecorations="Strikethrough" />
+
+                            <Label
+                                    Grid.Row="3"
+                                    FontFamily="Montserrat-SemiBold"
+                                    FontSize="18"
+                                    Margin="0,1,0,1"
+                                    LineHeight="{OnPlatform Android=1.25,
+                                                            Default=-1}"
+                                    Style="{StaticResource SimpleLabelStyle}"
+                                    Text="{Binding price, StringFormat='${0:0 }'}"
+                                    TextColor="{DynamicResource Gray-Black}" />
+
+
+                            <!--
+                                            Command="{Binding ParentBindingContext.AddFavouriteCommand, Source={x:Reference productTileTemplate}}"
+        TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=4}" 
+        Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}"
+        -->
+                            <!--  Add To Cart button  -->
+                            <buttons:SfButton
+                                    Grid.Row="4"
+                                    Margin="0,1"
+                                    Command="{Binding}"
+                                    Style="{StaticResource GradientButtonStyle}"
+                                    Text="Add To Cart"
+                                    VerticalOptions="End"
+                                    WidthRequest="245" />
+
+                        </Grid>
+                    </DataTemplate>
+                </listView:SfListView.ItemTemplate>
+
+                <!--  Layout to customize number of columns in SfListView  -->
+                <listView:SfListView.LayoutManager>
+                    <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=5, PhonePortrait=2, PhoneLandscape=4, TabletPortrait=4, TabletLandscape=5}" />
+                </listView:SfListView.LayoutManager>
+
+            </listView:SfListView>
+
+        </Grid>
+
+    </StackLayout>
+</ContentPage>
