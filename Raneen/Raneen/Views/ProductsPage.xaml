@@ -10,6 +10,15 @@
              Title="raneen">
 
     <StackLayout>
+
+        <!--<Picker ItemsSource="{Binding FilterOptions}" SelectedItem="{Binding SelectedFilter}" Title="Filter" x:Name="filterPicker">
+
+        </Picker>-->
+        <Picker x:Name="SortPiker"  SelectedIndexChanged="changePiker" Title="Sort"/>
+        <Picker x:Name="FilterPiker"  SelectedIndexChanged="filterPiker" Title="Filter"/>
+
+
+
         <Grid
             ColumnSpacing="0"
             RowDefinitions="Auto, *"

@@ -37,7 +37,6 @@ namespace Raneen.Views
             secondDeals.ItemsSource = productsList.data.data;
             secondDeals2.ItemsSource = productsList.data.data;
 
-
         }
 
         private void tabedCommandList(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)

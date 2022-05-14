@@ -72,6 +72,7 @@
                                     Grid.Row="1"
                                     Margin="0,0,0,8"
                                     FontSize="14"
+                        MaxLines="2"
                                     Style="{StaticResource TitleLabelStyle}"
                                     Text="{Binding name}" />
 
@@ -112,8 +113,9 @@
 
                     <Label
                             FontFamily="Montserrat-SemiBold"
-                            FontSize="14"
+                            FontSize="12"
                             LineBreakMode="TailTruncation"
+                            MaxLines="2"
                             LineHeight="{OnPlatform Android=1.5,
                                                     Default=-1}"
                             Text="{Binding name}"
@@ -130,7 +132,7 @@
     <ContentPage.Content>
         <ScrollView>
             <Grid ColumnSpacing="0"
-                RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
                 RowSpacing="0">
                 <syncfusion:SfListView
                     Grid.Row="0"
@@ -263,9 +265,34 @@
                     x:Name="secondDeals"
                     Orientation="Horizontal"
                     SelectionMode="None" />
+                <StackLayout
+                    Grid.Row="5"
+                    Margin="16,26,16,8"
+                    Orientation="Horizontal"
+                    VerticalOptions="Start">
+
+                    <Label
+                        FontFamily="Montserrat-SemiBold"
+                        FontSize="12"
+                        LineHeight="{OnPlatform Android=1.25,
+                                                Default=-1}"
+                        Text="NOW SHOWING"
+                        TextColor="{DynamicResource Gray-800}"
+                        VerticalTextAlignment="Center" />
+
+                    <buttons:SfButton
+                        Margin="16,0,0,0"
+                        
+                        FontSize="12"
+                        HeightRequest="38"
+                        HorizontalOptions="EndAndExpand"
+                        Style="{StaticResource TransparentButtonStyle}"
+                        Text="VIEW ALL"
+                        VerticalOptions="Center" />
+                </StackLayout>
                 <syncfusion:SfListView
-                    Grid.Row="4"
-                    HeightRequest="300"
+                    Grid.Row="6"
+                    HeightRequest="250"
                     IsScrollBarVisible="False"
                     ItemSize="150"
                     ItemSpacing="8, 0, 8, 0"
