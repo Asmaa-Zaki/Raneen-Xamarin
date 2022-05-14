@@ -4,15 +4,37 @@
              x:Class="Raneen.Views.ProductsPage"    
              xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              Shell.ForegroundColor="Black"
              x:Name="catalogTilePage"
              Title="raneen">
 
     <StackLayout>
-        <Picker x:Name="SortPiker"  SelectedIndexChanged="changePiker" Title="Sort"/>
-        <Picker x:Name="FilterPiker"  SelectedIndexChanged="filterPiker" Title="Filter"/>
+        <StackLayout Orientation="Horizontal">
+            <Picker 
+            x:Name="SortPiker"  
+            SelectedIndexChanged="changePiker"
+            HorizontalOptions="Start"
+            Title="Sort"
+            TextColor="Gray"
+            TitleColor="Gray"
+            Margin="15,0"
+            FontSize="14"
+            WidthRequest="150"
+            HeightRequest="50"/>
+
+            <Picker x:Name="FilterPiker"
+                    SelectedIndexChanged="filterPiker"
+                    HorizontalOptions="EndAndExpand"
+                    
+                    Title="Filter"
+                    TextColor="Gray"
+                    TitleColor="Gray"
+                    Margin="15,0"
+                    FontSize="14"
+                    WidthRequest="150"
+                    HeightRequest="50"/>
+        </StackLayout>
 
         <Grid
             ColumnSpacing="0"
