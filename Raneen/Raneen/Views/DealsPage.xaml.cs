@@ -16,10 +16,10 @@ using Xamarin.Forms.Xaml;
 namespace Raneen.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CategoryPage : ContentPage
+    public partial class DealsPage : ContentPage
     {
 
-        public CategoryPage()
+        public DealsPage()
         {
             InitializeComponent();
         }
@@ -32,6 +32,11 @@ namespace Raneen.Views
             Requests httpClient = new Requests(); ;
             var categoriesList = await httpClient.GetCategories();
             CategoryTile.ItemsSource = categoriesList.data.data;
+            var productsList = await httpClient.GetProducts("43");
+            firstDeals.ItemsSource = productsList.data.data;
+            secondDeals.ItemsSource = productsList.data.data;
+            secondDeals2.ItemsSource = productsList.data.data;
+
 
         }
 
@@ -39,6 +44,18 @@ namespace Raneen.Views
         {
             var obj = e.ItemData as catItems;
             Navigation.PushAsync(new ProductsPage(obj.id.ToString()));
+        }
+
+        private void productTabed(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            var obj = e.ItemData as Items;
+            Navigation.PushAsync(new detailes(obj));
+        }
+
+
+        private void tabedCommand(object sender, EventArgs e)
+        {
+
         }
     }
 }

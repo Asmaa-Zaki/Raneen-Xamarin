@@ -24,23 +24,20 @@
                 HorizontalOptions="FillAndExpand"
                 IsStickyHeader="False"
                 ItemSpacing="0, 8, 8, 8"
-             
+                ItemTapped="itemTaped"
+                
                 Style="{StaticResource TransparentSelectionListView}">
 
                 <listView:SfListView.ItemTemplate>
                     <DataTemplate>
-                        <syncEffectsView:SfEffectsView
-                            RippleColor="{DynamicResource Gray-300}"
-                            TouchDownEffects="Ripple"
-                            >
-                            <Grid
+
+                        <Grid
                                 Margin="0"
                                 ColumnDefinitions="4*, 1*"
                                 RowDefinitions="Auto, Auto, Auto"
                                 RowSpacing="0">
-
-                                <!--  Product Image  -->
-                                <Image
+                            <!--  Product Image  -->
+                            <Image
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
@@ -59,16 +56,46 @@
                                     WidthRequest="{OnIdiom Phone=183,
                                                            Tablet=224,
                                                            Desktop=224}">
-                                    <Image.Source>
-                                        <UriImageSource
+                                <Image.Source>
+                                    <UriImageSource
                                             CacheValidity="14"
                                             CachingEnabled="true"
                                             Uri="{Binding image}" />
-                                    </Image.Source>
-                                </Image>
+                                </Image.Source>
 
-                                <!--  Product Name  -->
-                                <Label
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                            Command="{Binding Path=BindingContext.TapCommand, Source = {x:Reference ListViewTile}}"
+                                            CommandParameter="{Binding}" />
+                                </Image.GestureRecognizers>
+
+                            </Image>
+
+                            <AbsoluteLayout Grid.ColumnSpan="2">
+                                <!--  Favourite Icon  -->
+                                <StackLayout
+                                        AbsoluteLayout.LayoutBounds="1, 1,.2,.98"
+                                        AbsoluteLayout.LayoutFlags="All"
+                                        >
+                                    <buttons:SfButton
+                                    Grid.Row="4"
+                                    Grid.Column="1"
+                                    Margin="0,0,0,1"
+                                    Padding="0"
+                                    CommandParameter="{Binding}"
+                                    FontSize="24"
+                                    HeightRequest="-1"
+                                    Style="{StaticResource IconButtonStyle}"
+                                    Text="♡"
+  
+                                    />
+                                </StackLayout>
+                            </AbsoluteLayout>
+
+
+
+                            <!--  Product Name  -->
+                            <Label
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
@@ -80,14 +107,14 @@
                                     Style="{StaticResource TitleLabelStyle}"
                                     Text="{Binding name}" />
 
-                                <Label
+                            <Label
                                     Grid.Row="2"
                                         Margin="0,6,0,1"
                                         Style="{StaticResource SimpleLabelStyle}"
                                         Text="{Binding old_price, StringFormat='${0:0.00}'}"
                                         TextDecorations="Strikethrough" />
 
-                                <Label
+                            <Label
                                     Grid.Row="3"
                                     FontFamily="Montserrat-SemiBold"
                                     FontSize="18"
@@ -98,25 +125,14 @@
                                     Text="{Binding price, StringFormat='${0:0 }'}"
                                     TextColor="{DynamicResource Gray-Black}" />
 
-                                <!--  Favourite Icon  -->
-                                <buttons:SfButton
-                                    Grid.Row="4"
-                                    Grid.Column="1"
-                                    Margin="0,0,0,1"
-                                    Padding="0"
-                                    CommandParameter="{Binding}"
-                                    FontSize="20"
-                                    HeightRequest="-1"
-                                    Style="{StaticResource IconButtonStyle}"
-                                    Text="♡"
-                                    />
-                                <!--
+
+                            <!--
                                             Command="{Binding ParentBindingContext.AddFavouriteCommand, Source={x:Reference productTileTemplate}}"
         TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=4}" 
         Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}"
         -->
-                                <!--  Add To Cart button  -->
-                                <buttons:SfButton
+                            <!--  Add To Cart button  -->
+                            <buttons:SfButton
                                     Grid.Row="4"
                                     Margin="0,1"
                                     Command="{Binding}"
@@ -125,8 +141,7 @@
                                     VerticalOptions="End"
                                     WidthRequest="245" />
 
-                            </Grid>
-                        </syncEffectsView:SfEffectsView>
+                        </Grid>
                     </DataTemplate>
                 </listView:SfListView.ItemTemplate>
 

@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Raneen.Views.DealsPage"    
+            xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+            xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             x:Name="DealsTilePage"
+             Title="raneen">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <DataTemplate x:Key="ProductTemplate">
+
+                <StackLayout Spacing="8">
+                    <border:SfBorder
+                            BorderColor="{DynamicResource Gray-Bg}"
+                            BorderWidth="1"
+                            CornerRadius="8">
+                        <Image
+                                Aspect="AspectFill"
+                                BackgroundColor="{DynamicResource Gray-200}"
+                                HeightRequest="220"
+                                WidthRequest="150">
+                            <Image.Source>
+                                <UriImageSource
+                                        CacheValidity="14"
+                                        CachingEnabled="true"
+                                        Uri="{Binding image}" />
+                            </Image.Source>
+                        </Image>
+                    </border:SfBorder>
+
+                    <Label
+                            FontFamily="Montserrat-SemiBold"
+                            FontSize="14"
+                            LineBreakMode="TailTruncation"
+                            LineHeight="{OnPlatform Android=1.5,
+                                                    Default=-1}"
+                            Text="{Binding name}"
+                            TextColor="{DynamicResource Gray-900}" />
+
+
+                </StackLayout>
+
+            </DataTemplate>
+
+            <DataTemplate x:Key="ProductTemplate1">
+
+                <Grid RowDefinitions="Auto, Auto" RowSpacing="8" >
+                    <!--  Category Image  -->
+                    <Image
+                                    Grid.Row="0"
+                                    Aspect="AspectFill"
+                                    BackgroundColor="{DynamicResource Gray-200}"
+                                    HeightRequest="{OnIdiom Phone=150,
+                                                            Tablet=240,
+                                                            Desktop=120}"
+                                    WidthRequest="{OnIdiom Phone=160,
+                                                           Tablet=224,
+                                                           Desktop=200}">
+                        <Image.Source>
+                            <UriImageSource
+                                            CacheValidity="14"
+                                            CachingEnabled="true"
+                                            Uri="{Binding image}" />
+                        </Image.Source>
+                    </Image>
+
+                    <!--  Category Name  -->
+                    <Label
+                                    Grid.Row="1"
+                                    Margin="0,0,0,8"
+                                    FontSize="14"
+                                    Style="{StaticResource TitleLabelStyle}"
+                                    Text="{Binding name}" />
+
+                    <buttons:SfButton
+                        Grid.Row="2"
+                                    Margin="0,1"
+                                    Command="{Binding name}"
+                                CommandParameter="{Binding .}"
+                                Clicked="tabedCommand"
+                                    Style="{StaticResource GradientButtonStyle}"
+                                    Text="Add To Cart"
+                                    VerticalOptions="End"
+                                    WidthRequest="245" />
+
+                </Grid>
+
+            </DataTemplate>
+
+            <DataTemplate x:Key="Product2Template">
+                <StackLayout Spacing="8">
+                    <border:SfBorder
+                            BorderColor="{DynamicResource Gray-Bg}"
+                            BorderWidth="1"
+                            CornerRadius="8">
+                        <Image
+                                Aspect="AspectFill"
+                                BackgroundColor="{DynamicResource Gray-200}"
+                                HeightRequest="120"
+                                WidthRequest="180">
+                            <Image.Source>
+                                <UriImageSource
+                                        CacheValidity="14"
+                                        CachingEnabled="true"
+                                        Uri="{Binding image}" />
+                            </Image.Source>
+                        </Image>
+                    </border:SfBorder>
+
+                    <Label
+                            FontFamily="Montserrat-SemiBold"
+                            FontSize="14"
+                            LineBreakMode="TailTruncation"
+                            LineHeight="{OnPlatform Android=1.5,
+                                                    Default=-1}"
+                            Text="{Binding name}"
+                            TextColor="{DynamicResource Gray-900}" />
+
+                </StackLayout>
+
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid ColumnSpacing="0"
+                RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                RowSpacing="0">
+                <syncfusion:SfListView
+                    Grid.Row="0"
+                x:Name="CategoryTile"
+                Padding="8"
+                AutoFitMode="Height"
+                    IsScrollBarVisible="False"
+                    HeightRequest="400"
+                Style="{StaticResource TransparentSelectionListView}"
+            ItemTapped="tabedCommandList">
+
+                    <syncfusion:SfListView.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid RowDefinitions="Auto, Auto" RowSpacing="8" >
+                                <!--  Category Image  -->
+                                <Image
+                                    Grid.Row="0"
+                                    Aspect="AspectFill"
+                                    BackgroundColor="{DynamicResource Gray-200}"
+                                    HeightRequest="{OnIdiom Phone=150,
+                                                            Tablet=240,
+                                                            Desktop=120}"
+                                    WidthRequest="{OnIdiom Phone=160,
+                                                           Tablet=224,
+                                                           Desktop=200}">
+                                    <Image.Source>
+                                        <UriImageSource
+                                            CacheValidity="14"
+                                            CachingEnabled="true"
+                                            Uri="{Binding image}" />
+                                    </Image.Source>
+
+                                    <!--<Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                    Tapped="tabedCommand"
+                                        CommandParameter="{Binding .}"
+                                />
+                                </Image.GestureRecognizers>-->
+                                </Image>
+
+                                <!--  Category Name  -->
+                                <Label
+                                    Grid.Row="1"
+                                    Margin="0,0,0,8"
+                                    FontSize="14"
+                                    Style="{StaticResource TitleLabelStyle}"
+                                    Text="{Binding name}" />
+
+
+                            </Grid>
+
+                        </DataTemplate>
+                    </syncfusion:SfListView.ItemTemplate>
+                    <!--  Layout to customize no. of columns in SfListView  -->
+                    <syncfusion:SfListView.LayoutManager>
+                        <syncfusion:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=4, PhonePortrait=2, PhoneLandscape=3, TabletPortrait=3, TabletLandscape=4}" />
+                    </syncfusion:SfListView.LayoutManager>
+
+                </syncfusion:SfListView>
+                <StackLayout
+                    Grid.Row="1"
+                    Margin="16,26,16,8"
+                    Orientation="Horizontal"
+                    VerticalOptions="Start">
+
+                    <Label
+                        FontFamily="Montserrat-SemiBold"
+                        FontSize="12"
+                        LineHeight="{OnPlatform Android=1.25,
+                                                Default=-1}"
+                        Text="NOW SHOWING"
+                        TextColor="{DynamicResource Gray-800}"
+                        VerticalTextAlignment="Center" />
+
+                    <buttons:SfButton
+                        Margin="16,0,0,0"
+                        
+                        FontSize="12"
+                        HeightRequest="38"
+                        HorizontalOptions="EndAndExpand"
+                        Style="{StaticResource TransparentButtonStyle}"
+                        Text="VIEW ALL"
+                        VerticalOptions="Center" />
+                </StackLayout>
+                <syncfusion:SfListView
+                    Grid.Row="2"
+                    HeightRequest="280"
+                    IsScrollBarVisible="False"
+                    ItemSize="150"
+                    ItemSpacing="8, 0, 8, 0"
+                    ItemTemplate="{StaticResource ProductTemplate}"
+                    x:Name="firstDeals"
+                    Orientation="Horizontal"
+                    ItemTapped="productTabed"
+                    SelectionMode="None" />
+                <StackLayout
+                    Grid.Row="3"
+                    Margin="16,26,16,8"
+                    Orientation="Horizontal"
+                    VerticalOptions="Start">
+
+                    <Label
+                        FontFamily="Montserrat-SemiBold"
+                        FontSize="12"
+                        LineHeight="{OnPlatform Android=1.25,
+                                                Default=-1}"
+                        Text="NOW SHOWING"
+                        TextColor="{DynamicResource Gray-800}"
+                        VerticalTextAlignment="Center" />
+
+                    <buttons:SfButton
+                        Margin="16,0,0,0"
+                        
+                        FontSize="12"
+                        HeightRequest="38"
+                        HorizontalOptions="EndAndExpand"
+                        Style="{StaticResource TransparentButtonStyle}"
+                        Text="VIEW ALL"
+                        VerticalOptions="Center" />
+                </StackLayout>
+                <syncfusion:SfListView
+                    Grid.Row="4"
+                    HeightRequest="280"
+                    IsScrollBarVisible="False"
+                    ItemSize="150"
+                    ItemSpacing="8, 0, 8, 0"
+                    ItemTapped="productTabed"
+                    ItemTemplate="{StaticResource ProductTemplate1}"
+                    x:Name="secondDeals"
+                    Orientation="Horizontal"
+                    SelectionMode="None" />
+                <syncfusion:SfListView
+                    Grid.Row="4"
+                    HeightRequest="300"
+                    IsScrollBarVisible="False"
+                    ItemSize="150"
+                    ItemSpacing="8, 0, 8, 0"
+                    ItemTapped="productTabed"
+                    ItemTemplate="{StaticResource ProductTemplate1}"
+                    x:Name="secondDeals2"
+                    Orientation="Horizontal"
+                    SelectionMode="None" />
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
