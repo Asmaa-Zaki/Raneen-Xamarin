@@ -2,27 +2,102 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Raneen.Views.accountPage"
-             BackgroundImageSource="skybg"
              Shell.NavBarIsVisible = "False"
-             >
+             x:Name="acountPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Frame CornerRadius='10' VerticalOptions="CenterAndExpand" HorizontalOptions="Center"  WidthRequest="200">
-            <StackLayout HeightRequest="250" BackgroundColor="white
-                         ">
-                <StackLayout VerticalOptions="CenterAndExpand">
-                    <Label Text="If U Have an Account" HorizontalOptions="Center" FontAttributes="Bold" Margin="15" TextColor="Black" />
-                        <Button CornerRadius="5" Text="Sign In" HorizontalOptions="Center"
-                                Background="red" TextColor="White" WidthRequest="170" 
-                                HeightRequest="40" Clicked="logIn"/>
-                        <Label Text="Or" HorizontalOptions="Center" FontAttributes="Bold" TextColor="Black"/>
-                        <Button CornerRadius="5" Text="Sign Up" HorizontalOptions="Center"
-                                BackgroundColor="DimGray" TextColor="White"
-                                WidthRequest="170" HeightRequest="40" 
-                                Clicked="signUp"/>
-                </StackLayout>
+        <Grid>
+            <StackLayout  x:Name="account">
+                <Frame CornerRadius='10' VerticalOptions="CenterAndExpand" HorizontalOptions="Center"  WidthRequest="200">
+                    <StackLayout HeightRequest="250" BackgroundColor="white
+                             ">
+                        <StackLayout VerticalOptions="CenterAndExpand">
+                            <Label Text="If U Have an Account" HorizontalOptions="Center" FontAttributes="Bold" Margin="15" TextColor="Black" />
+                            <Button CornerRadius="5" Text="Sign In" HorizontalOptions="Center"
+                                    Background="red" TextColor="White" WidthRequest="170" 
+                                    HeightRequest="40" Clicked="logIn"/>
+                            <Label Text="Or" HorizontalOptions="Center" FontAttributes="Bold" TextColor="Black"/>
+                            <Button CornerRadius="5" Text="Sign Up" HorizontalOptions="Center"
+                                    BackgroundColor="DimGray" TextColor="White"
+                                    WidthRequest="170" HeightRequest="40" 
+                                    Clicked="signUp"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
-            </Frame>
-        </StackLayout>
+
+            <Grid x:Name="profile">
+
+                <StackLayout Grid.Row="0" Grid.RowSpan="2" Margin="0,30" HorizontalOptions="Center">
+                    <Image Source="profile" WidthRequest="100"/>
+                    <Label x:Name="fullName" TextColor="Black" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold" Margin="0,2,0,-4"/>
+                    <Label x:Name="email" TextColor="Gray" HorizontalTextAlignment="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="4" Margin=" 40,-10">
+                    <StackLayout>
+                        <Image Source="user" WidthRequest="25" BackgroundColor="Gray" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Label  Text="Account Information" TextColor="Black" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Account">
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="5"  Margin=" 40,-10">
+                    <StackLayout>
+                        <Image Source="location" WidthRequest="25" BackgroundColor="Gray"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label  Text="My Addresses" TextColor="Black" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="MyAddresses">
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="6"  Margin=" 40,-10">
+                    <StackLayout>
+                        <Image Source="orders" WidthRequest="25" BackgroundColor="Gray"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label  Text="My Orders" TextColor="Black" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="MyOrders">
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="7"  Margin=" 40,-10">
+                    <StackLayout>
+                        <Image Source="heart" WidthRequest="25" BackgroundColor="Gray"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label  Text="My Wishlist" TextColor="Black" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="WishList">
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="8"  Grid.RowSpan="2" Margin="40,-10">
+                    <StackLayout>
+                        <Image Source="logout" WidthRequest="25" BackgroundColor="Gray"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label  Text="Log Out" TextColor="Black" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="LogOut">
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </Grid>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -29,7 +29,7 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <TabBar>
+    <TabBar x:Name="Tabbar">
         <ShellContent Title="Home" Icon="home.png" ContentTemplate="{DataTemplate local:HomePage}" />
         <ShellContent Title="Category" Icon="category.png" ContentTemplate="{DataTemplate local:CategoryPage}" />
         <ShellContent Title="Deals" Icon="offer.png" ContentTemplate="{DataTemplate local:DealsPage}" />

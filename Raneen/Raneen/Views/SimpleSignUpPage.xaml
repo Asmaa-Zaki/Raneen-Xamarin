@@ -40,7 +40,7 @@
                         Phone="FillAndExpand" />
                 </ScrollView.VerticalOptions>
 
-                        
+
                 <StackLayout
                     Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
                                                                  PhoneLandscape='150,32',
@@ -88,7 +88,7 @@
                             </buttons:SfButton.Content>
                         </buttons:SfButton>
 
-<!-- fName  -->
+                        <!-- fName  -->
                         <StackLayout>
                             <Label Text="First Name" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
                             <!--  Entry to get fName from user  -->
@@ -131,7 +131,7 @@
                                 VerticalOptions="FillAndExpand" />
                         </StackLayout>
 
- <!-- SName -->
+                        <!-- SName -->
                         <StackLayout>
                             <Label Text="Second Name" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
                             <!--  Entry to get sName from user  -->
@@ -173,47 +173,49 @@
                                 TextColor="{DynamicResource Red}"
                                 VerticalOptions="FillAndExpand" />
                         </StackLayout>
+                        
+                        <!--Email-->
                         <StackLayout>
-                            <border:SfBorder
-                BackgroundColor="{DynamicResource Gray-Bg}"
-                Style="{StaticResource LoginFormBorderlessEntryBorderStyle}"
-                CornerRadius="5">
+                        <Label Text="Email" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                        <border:SfBorder
+                            BackgroundColor="{DynamicResource Gray-Bg}"
+                            Style="{StaticResource LoginFormBorderlessEntryBorderStyle}"
+                            CornerRadius="5">
 
-                                <Grid ColumnDefinitions="*, Auto">
+                            <Grid ColumnDefinitions="*, Auto">
+                            <control:BorderlessEntry            
+                            x:Name="EmailEntry"
+                            Margin="15,0"
+                            HeightRequest="50"
+                            Keyboard="Email"
+                            FontSize="13"
+                            Placeholder="Enter Email"
+                            Style="{StaticResource BorderlessEntryStyle}"
+                            Text="{Binding Email.Value}">
+                                            <Entry.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding Email.IsValid}" />
+                                            </Entry.Behaviors>
+                                        </control:BorderlessEntry>
 
-                                    <control:BorderlessEntry            
-                        x:Name="EmailEntry"
-                        Margin="15,0"
-                        HeightRequest="50"
-                        Keyboard="Email"
-                        FontSize="13"
-                        Placeholder="Enter Email"
-                        Style="{StaticResource BorderlessEntryStyle}"
-                        Text="{Binding Email.Value}">
-                                        <Entry.Behaviors>
-                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding Email.IsValid}" />
-                                        </Entry.Behaviors>
-                                    </control:BorderlessEntry>
-
-                                    <!--  Label to display error icon  -->
-                                    <Label
-                        Grid.Column="1"
-                        IsVisible="{Binding Path=IsVisible, Source={x:Reference ValidationLabel}}"
-                        Style="{StaticResource ErrorIconLabelStyle}"
-                        Text="{StaticResource Error}" />
+                                        <!--  Label to display error icon  -->
+                                        <Label
+                            Grid.Column="1"
+                            IsVisible="{Binding Path=IsVisible, Source={x:Reference ValidationLabel}}"
+                            Style="{StaticResource ErrorIconLabelStyle}"
+                            Text="{StaticResource Error}" />
 
                                 </Grid>
                             </border:SfBorder>
 
                             <Label
-                x:Name="ValidationLabel"
-                Margin="15,0,0,0"
-                FontSize="12"
-                IsVisible="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}"
-                Style="{StaticResource SimpleLabelStyle}"
-                Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                TextColor="{DynamicResource Red}"
-                VerticalOptions="FillAndExpand" />
+                                x:Name="ValidationLabel"
+                                Margin="15,0,0,0"
+                                FontSize="12"
+                                IsVisible="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource SimpleLabelStyle}"
+                                Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                TextColor="{DynamicResource Red}"
+                                VerticalOptions="FillAndExpand" />  
 
                         </StackLayout>
                         <!-- Phone -->
@@ -259,7 +261,7 @@
                                 VerticalOptions="FillAndExpand" />
                         </StackLayout>
 
-<!--Password -->
+                        <!--Password -->
                         <StackLayout>
                             <Label Text="Password" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
                             <!--  Entry to get the password from user  -->
@@ -303,7 +305,7 @@
                                 VerticalOptions="FillAndExpand" />
                         </StackLayout>
 
-<!--  Sign-up button  -->
+                        <!--  Sign-up button  -->
                         <buttons:SfButton
                             Grid.Row="5"
                           
@@ -324,7 +326,7 @@
                         VerticalOptions="End"
                         Margin="20">
 
-                      <!--  <StackLayout.Padding>
+                        <!--  <StackLayout.Padding>
                             <OnIdiom
                                 x:DataType="Thickness"
                                 Default="0, 48, 0, 0"
@@ -346,6 +348,7 @@
 
                     </StackLayout>
                 </StackLayout>
+                
             </ScrollView>
         </Grid>
     </ContentPage.Content>

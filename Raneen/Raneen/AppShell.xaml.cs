@@ -13,7 +13,6 @@ namespace Raneen
         {
             InitializeComponent();
             //initApi();
-
         }
 
         //public async void initApi()
