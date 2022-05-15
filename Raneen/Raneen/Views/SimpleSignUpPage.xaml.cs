@@ -52,7 +52,10 @@ namespace Raneen.Views
                 foreach (var user in users)
                 {
                     if (user.Email == EmailEntry.Text)
+                    {
                         flag = 1;
+                        await DisplayAlert("SignUp Problem", "U signed up before, Sign In Instead!", "Ok");
+                    }
                 }
                 if (flag == 0)
                 {
@@ -63,11 +66,12 @@ namespace Raneen.Views
                     Password = PasswordEntry.Text;
 
                     await User.AddUser(FirstName, LastName, Email, Phone, Password);
+
+                    Application.Current.Properties["Fname"] = FirstName;
+                    Application.Current.Properties["Lname"] = LastName;
+                    Application.Current.Properties["Email"] = Email;
+                    App.Current.MainPage = new AppShell();
                 }
-                Application.Current.Properties["Fname"] = FirstName;
-                Application.Current.Properties["Lname"] = LastName;
-                Application.Current.Properties["Email"] = Email;
-                App.Current.MainPage = new AppShell();
             }
         }
     }
