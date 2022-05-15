@@ -62,6 +62,7 @@ namespace Raneen.Views
             Application.Current.Properties.Clear();
             account.IsVisible = true;
             profile.IsVisible = false;
+            acountPage.BackgroundImageSource = "skybg";
         }
 
         private void Account(object sender, EventArgs e)

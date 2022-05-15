@@ -61,7 +61,7 @@
                         <buttons:SfButton
                             Grid.Row="0"
                             Margin="0,0,0,0"
-                            BackgroundColor="#b83939"
+                            BackgroundColor="{DynamicResource FacebookBlue}"
                             TextColor="White"
                             Padding="15"
                             FontAttributes="Bold"
@@ -76,13 +76,13 @@
                                     <Label
                                         FontFamily="FontIcons"
                                         FontSize="18"
-                                        Text="&#xe74d;"
+                                        Text="&#xe735;"
                                         TextColor="{DynamicResource Gray-White}"
                                         VerticalTextAlignment="Center" />
                                     <Label
                                         FontFamily="Montserrat-Medium"
                                         FontSize="16"
-                                        Text="Login with Google"
+                                        Text="Sign up with Facebook"
                                         TextColor="{DynamicResource Gray-White}" />
                                 </StackLayout>
                             </buttons:SfButton.Content>
