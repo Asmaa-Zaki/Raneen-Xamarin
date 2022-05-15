@@ -32,8 +32,8 @@ namespace Raneen.Views
         private async void SignUp(object sender, System.EventArgs e)
         {
             if (FirstNameEntry.Text == String.Empty || SecondNameEntry.Text == String.Empty || PhoneEntry.Text == String.Empty ||
-                PasswordEntry.Text == String.Empty || EmailEntry.Text == String.Empty || 
-                FirstNameEntry.Text == null || SecondNameEntry.Text == null || 
+                PasswordEntry.Text == String.Empty || EmailEntry.Text == String.Empty ||
+                FirstNameEntry.Text == null || SecondNameEntry.Text == null ||
                 PhoneEntry.Text == null ||
                 PasswordEntry.Text == null || EmailEntry.Text == null)
             {
@@ -63,13 +63,11 @@ namespace Raneen.Views
                     Application.Current.Properties["Lname"] = LastName;
                     Application.Current.Properties["Email"] = Email;
 
-                    await Navigation.PushAsync(new HomePage());
-                    //var tabbedPage = this.Parent.Parent as TabbedPage;
-                    //tabbedPage.CurrentPage = tabbedPage.Children[0];
 
-                    
+                    App.Current.MainPage = new AppShell();
+
                 }
- 
+
             }
         }
     }
