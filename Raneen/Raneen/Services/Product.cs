@@ -25,30 +25,23 @@ namespace Raneen.Services
             return product;
         }
 
-        public static async Task AddProduct(int _id, double _price, double _oldPrice,
-                                         double _discount, string _image, string _name,
-                                         string _description, List<string> _images,
-                                         bool _inFavorites, bool _inCart)
+        public static async Task AddProduct(int _id, int _count)
         {
             database = await Database.Init(database);
             ProductModel product = new ProductModel()
             {
                 id = _id,
-                price = _price,
-                old_price = _oldPrice,
-                discount = _discount,
-                image = _image,
-                name = _name,   
-                description = _description,
-                images = _images,
-                in_favorites = _inFavorites,
-                in_cart = _inCart
+                count = _count
             };
             await database.InsertAsync(product);
         }
 
-        public static async Task UpdateProduct(ProductModel product)
+        public static async Task UpdateProduct(ProductModel product, string op)
         {
+            if (op == "+")
+                product.count++;
+            else if (op == "-")
+                product.count--;
             database = await Database.Init(database);
             await database.UpdateAsync(product);
         }

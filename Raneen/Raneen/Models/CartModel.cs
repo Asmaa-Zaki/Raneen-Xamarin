@@ -9,7 +9,7 @@ namespace Raneen.Models
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
-        public int UserId { get; set; }
+        public string Email { get; set; }
         public int ProductId { get; set; }
         public int count { get; set; }
 
