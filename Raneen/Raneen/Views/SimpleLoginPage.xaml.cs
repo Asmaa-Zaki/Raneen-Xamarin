@@ -22,5 +22,10 @@ namespace Raneen.Views
         {
             Navigation.PushAsync(new SimpleSignUpPage());
         }
+
+        private void LoginFaceBook(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

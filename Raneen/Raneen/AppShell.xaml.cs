@@ -15,6 +15,7 @@ namespace Raneen
             InitializeComponent();
             InitProductsInDB();
 
+            //initApi();
         }
 
         public async void InitProductsInDB()

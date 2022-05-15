@@ -184,6 +184,7 @@
                             Padding="15"
                             FontAttributes="Bold"
                             CornerRadius="10"
+                            Clicked="LoginFaceBook"
                             Command="{Binding SocialMediaLoginCommand}"
                             HeightRequest="50">
                         <buttons:SfButton.Content>

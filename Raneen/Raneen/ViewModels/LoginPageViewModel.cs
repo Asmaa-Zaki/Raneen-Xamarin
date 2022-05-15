@@ -209,7 +209,7 @@ namespace Raneen.ViewModels
                                 Console.WriteLine(facebookProfile.email);
                                 //Preferences.Set("userEmail", facebookProfile.email);
                                 //Application.Current.Properties.Add("userLogin", facebookProfile);
-                                await App.Current.MainPage.Navigation.PushModalAsync(new CategoryPage());
+                                App.Current.MainPage = new AppShell();
 
 
                                 Application.Current.Properties["Fname"] = facebookProfile.first_name;

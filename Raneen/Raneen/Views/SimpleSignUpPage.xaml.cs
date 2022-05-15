@@ -16,6 +16,11 @@ namespace Raneen.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SimpleSignUpPage
     {
+        string FirstName;
+        string LastName;
+        string Phone;
+        string Email;
+        string Password;
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleSignUpPage" /> class.
         /// </summary>
@@ -51,23 +56,18 @@ namespace Raneen.Views
                 }
                 if (flag == 0)
                 {
-                    string FirstName = FirstNameEntry.Text;
-                    string LastName = SecondNameEntry.Text;
-                    string Phone = PhoneEntry.Text;
-                    string Email = EmailEntry.Text;
-                    string Password = PasswordEntry.Text;
+                    FirstName = FirstNameEntry.Text;
+                    LastName = SecondNameEntry.Text;
+                    Phone = PhoneEntry.Text;
+                    Email = EmailEntry.Text;
+                    Password = PasswordEntry.Text;
 
                     await User.AddUser(FirstName, LastName, Email, Phone, Password);
-
-                    Application.Current.Properties["Fname"] = FirstName;
-                    Application.Current.Properties["Lname"] = LastName;
-                    Application.Current.Properties["Email"] = Email;
-
-
-                    App.Current.MainPage = new AppShell();
-
                 }
-
+                Application.Current.Properties["Fname"] = FirstName;
+                Application.Current.Properties["Lname"] = LastName;
+                Application.Current.Properties["Email"] = Email;
+                App.Current.MainPage = new AppShell();
             }
         }
     }
