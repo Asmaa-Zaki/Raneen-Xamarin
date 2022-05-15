@@ -14,27 +14,26 @@ namespace Raneen
         {
             InitializeComponent();
             InitProductsInDB();
-
-            //initApi();
         }
 
         public async void InitProductsInDB()
         {
-            var product= await Product.getAllProducts();
-            if (product.ToList().Count == 0)
+            Random r = new Random();            
+            var dbProduct = await Product.getAllProducts();
+            if (dbProduct.ToList().Count == 0)
             {
-                foreach (var item in product)
-                {
                     Requests requests = new Requests();
                     var categories =await requests.GetCategories();
-                    var cat =categories.data.data;
-                    foreach (var category in cat)
+                    foreach (var category in categories.data.data)
                     {
-                        Console.WriteLine(category.id);
+                        var products = await requests.GetProducts(category.id.ToString());
+                        foreach (var product in products.data.data)
+                        {
+                            await Product.AddProduct(product.id, r.Next(3, 8));
+                        }
                     }
-                }
             }
-                
+
         }
 
     }
