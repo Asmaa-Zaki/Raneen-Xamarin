@@ -108,8 +108,17 @@ namespace Raneen.Views
             ListViewTile.ItemsSource = GetAllProducts(FilterPiker.SelectedIndex.ToString());
         }
 
-        private void AddToCart(object sender, EventArgs e)
+        private async void AddToCart(object sender, EventArgs e)
         {
+            if (Application.Current.Properties.ContainsKey("Email"))
+            {
+                var product = sender as ProductModel;
+                await Cart.AddProductToCart(Application.Current.Properties.ContainsKey("Email").ToString(), product.id);
+            }
+            else
+            {
+                await DisplayAlert("Warning", "You must sign in first", "Cance");
+            }
 
         }
     }

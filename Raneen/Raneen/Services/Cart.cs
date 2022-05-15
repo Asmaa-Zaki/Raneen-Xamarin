@@ -25,48 +25,52 @@ namespace Raneen.Services
             return product;
         }
 
-        public static async Task<List<CartModel>> getProductsByUserId(int UserId)
+        public static async Task<List<CartModel>> getProductsByUserId(string _email)
         {
             await Database.Init(database);
 
-            var products = await database.QueryAsync<CartModel>($"select * from CartModel where UserId = ?", UserId);
+            var products = await database.QueryAsync<CartModel>($"select * from CartModel where Email = ?", _email);
             return products;
         }
-        public static async Task<List<CartModel>> getProductsByUserIdAndProductId(int _userId, int _productId)
+        public static async Task<List<CartModel>> getProductsByUserIdAndProductId(string _email, int _productId)
         {
             await Database.Init(database);
-            var products = await database.QueryAsync<CartModel>($"select * from CartModel where _userId = ? " +
-                $"And _productId = ?", _userId,_productId);
+            var products = await database.QueryAsync<CartModel>($"select * from CartModel where Email = ? " +
+                $"And _productId = ?", _email,_productId);
             return products;
         }
-        public static async Task AddProductToCart(int _UserId, int _ProductId)
+        public static async Task AddProductToCart(string _email, int _ProductId)
         {
-           var result = await getProductsByUserIdAndProductId(_UserId, _ProductId);
+           var result = await getProductsByUserIdAndProductId(_email, _ProductId);
             if(result.Count == 0 || result == null)
             {
                 CartModel product = new CartModel()
                 {
                     ProductId = _ProductId,
-                    UserId = _UserId,
+                    Email = _email,
                     count = 1
                 };
                 await database.InsertAsync(product);
             }
             else
             {
-                await UpdateProduct(_UserId, _ProductId, "+");
+                await UpdateProduct(_email, _ProductId, "+");
             }
             
         }
 
-        public static async Task UpdateProduct(int _UserId, int _ProductId, string operation)
+        public static async Task UpdateProduct(string _email, int _ProductId, string operation)
         {
-            var result = await getProductsByUserIdAndProductId(_UserId, _ProductId);
+            var result = await getProductsByUserIdAndProductId(_email, _ProductId);
             if (operation == "+")
                 result[0].count++;
             else if (operation == "-")
+            {
+                if (result[0].count == 1)
+                    return;
+                else
                 result[0].count--;
-
+            }
             await database.UpdateAsync(result[0]);
         }
 
