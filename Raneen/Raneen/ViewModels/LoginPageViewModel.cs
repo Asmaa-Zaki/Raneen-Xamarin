@@ -1,11 +1,15 @@
 ﻿using FacebookLogin.Models;
 using Newtonsoft.Json;
 using Plugin.FacebookClient;
+using Raneen.Models;
+using Raneen.Services;
 using Raneen.Validators;
 using Raneen.Validators.Rules;
 using Raneen.Views;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -207,17 +211,25 @@ namespace Raneen.ViewModels
                                 //Application.Current.Properties.Add("userLogin", facebookProfile);
                                 await App.Current.MainPage.Navigation.PushModalAsync(new CategoryPage());
 
-                                //var profile = new JsonFacebookProfile()
-                                //{
-                                //    email = facebookProfile.email,
-                                //    firstName = facebookProfile.first_name,
-                                //    lastName = facebookProfile.last_name,
-                                //    userId = facebookProfile.id
-                                //};
 
-                                //string jsonFacebookProfile = JsonConvert.SerializeObject(profile);
+                                Application.Current.Properties["Fname"] = facebookProfile.first_name;
+                                Application.Current.Properties["Lname"] = facebookProfile.last_name;
+                                Application.Current.Properties["Email"] = facebookProfile.email;
 
-                                //Debug.WriteLine("Request Body: " + jsonFacebookProfile);
+                               var u =  await User.getAllUsers();
+                                List<UserModel> users = u.ToList();
+                                int flag = 0;
+                                foreach (var user in users)
+                                {
+                                    if (user.Email == facebookProfile.email)
+                                        flag = 1;
+                                }
+                                if (flag == 0)
+                                {
+                                    await User.AddUser(facebookProfile.first_name, facebookProfile.last_name, 
+                                        facebookProfile.email, "", "");
+                                }
+                             
                             }
                             catch (Exception ex)
                             {

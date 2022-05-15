@@ -173,13 +173,50 @@
                                 TextColor="{DynamicResource Red}"
                                 VerticalOptions="FillAndExpand" />
                         </StackLayout>
-<!-- Email -->
                         <StackLayout>
-                            <Label Text="Email" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
-                            <!--  Entry to get email from user  -->
-                            <local:SimpleEmailEntry />
+                            <border:SfBorder
+                BackgroundColor="{DynamicResource Gray-Bg}"
+                Style="{StaticResource LoginFormBorderlessEntryBorderStyle}"
+                CornerRadius="5">
+
+                                <Grid ColumnDefinitions="*, Auto">
+
+                                    <control:BorderlessEntry            
+                        x:Name="EmailEntry"
+                        Margin="15,0"
+                        HeightRequest="50"
+                        Keyboard="Email"
+                        FontSize="13"
+                        Placeholder="Enter Email"
+                        Style="{StaticResource BorderlessEntryStyle}"
+                        Text="{Binding Email.Value}">
+                                        <Entry.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding Email.IsValid}" />
+                                        </Entry.Behaviors>
+                                    </control:BorderlessEntry>
+
+                                    <!--  Label to display error icon  -->
+                                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding Path=IsVisible, Source={x:Reference ValidationLabel}}"
+                        Style="{StaticResource ErrorIconLabelStyle}"
+                        Text="{StaticResource Error}" />
+
+                                </Grid>
+                            </border:SfBorder>
+
+                            <Label
+                x:Name="ValidationLabel"
+                Margin="15,0,0,0"
+                FontSize="12"
+                IsVisible="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                Style="{StaticResource SimpleLabelStyle}"
+                Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                TextColor="{DynamicResource Red}"
+                VerticalOptions="FillAndExpand" />
+
                         </StackLayout>
-<!-- Phone -->
+                        <!-- Phone -->
                         <StackLayout>
                             <Label Text="Phone" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
                             <!--  Entry to get phone from user  -->
@@ -233,7 +270,7 @@
                                 <Grid ColumnDefinitions="*, Auto">
 
                                     <control:BorderlessEntry
-                                        x:Name="Password"
+                                        x:Name="PasswordEntry"
                                         Margin="15,0"
                                         FontSize="12"
                                         HeightRequest="50"
@@ -276,7 +313,8 @@
                             TextColor="White"
                             Padding="15"
                             CornerRadius="10"
-                            Text="Sign Up" />
+                            Text="Sign Up" 
+                            Clicked="SignUp"/>
                     </StackLayout>
 
                     <StackLayout
