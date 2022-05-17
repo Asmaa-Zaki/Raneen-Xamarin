@@ -22,7 +22,7 @@ namespace Raneen.Services
 
         public static async Task<UserModel> getUser(int id)
         {
-            await Database.Init(database);
+            database = await Database.Init(database);
             var user = await database.FindAsync<UserModel>(id);
             return user;
         }

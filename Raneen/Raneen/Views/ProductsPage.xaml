@@ -155,11 +155,11 @@
                                     Grid.Row="4"
                                     Margin="0,1"
                                     Grid.ColumnSpan="2"
-                                    Command="{Binding}"
+                                    CommandParameter="{Binding .}"
                                     Style="{StaticResource GradientButtonStyle}"
                                     Text="Add To Cart"
                                     VerticalOptions="End"
-                                Clicked="AddToCart"
+                                    Clicked="AddToCart"
                                     WidthRequest="245" />
 
                         </Grid>

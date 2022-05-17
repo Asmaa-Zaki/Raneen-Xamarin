@@ -20,16 +20,14 @@ namespace Raneen.Services
 
         public static async Task<AddressModel> getAddress(int id)
         {
-            await Database.Init(database);
+            database = await Database.Init(database);
             var address = await database.FindAsync<AddressModel>(id);
             return address;
         }
 
         public static async Task<List<AddressModel>> getAddressByUserId(int UserId)
         {
-            await Database.Init(database);
-
-
+            database = await Database.Init(database);
             var address = await database.QueryAsync<AddressModel>($"select * from AddressModel where UserId = ?", UserId);
             return address;
         }

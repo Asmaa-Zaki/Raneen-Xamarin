@@ -20,7 +20,7 @@ namespace Raneen.Services
 
         public static async Task<ProductModel> getProduct(int id)
         {
-            await Database.Init(database);
+            database = await Database.Init(database);
             var product = await database.FindAsync<ProductModel>(id);
             return product;
         }

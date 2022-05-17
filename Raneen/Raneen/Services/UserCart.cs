@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Raneen.Services
 {
-    internal class Cart
+    internal class UserCart
     {
         static SQLiteAsyncConnection database;
 
@@ -20,56 +20,58 @@ namespace Raneen.Services
 
         public static async Task<CartModel> getProduct(int id)
         {
-            await Database.Init(database);
+            database = await Database.Init(database);
             var product = await database.FindAsync<CartModel>(id);
             return product;
         }
 
         public static async Task<List<CartModel>> getProductsByUserId(string _email)
         {
-            await Database.Init(database);
-
+            database = await Database.Init(database);
             var products = await database.QueryAsync<CartModel>($"select * from CartModel where Email = ?", _email);
             return products;
         }
         public static async Task<List<CartModel>> getProductsByUserIdAndProductId(string _email, int _productId)
         {
-            await Database.Init(database);
+            database = await Database.Init(database);
             var products = await database.QueryAsync<CartModel>($"select * from CartModel where Email = ? " +
-                $"And _productId = ?", _email,_productId);
+                $"And ProductId = ?", _email,_productId);
             return products;
         }
         public static async Task AddProductToCart(string _email, int _ProductId)
         {
-           var result = await getProductsByUserIdAndProductId(_email, _ProductId);
-            if(result.Count == 0 || result == null)
+            database = await Database.Init(database);
+            var result = await getProductsByUserIdAndProductId(_email, _ProductId);
+
+            if (result.Count == 0 || result == null)
             {
                 CartModel product = new CartModel()
-                {
-                    ProductId = _ProductId,
-                    Email = _email,
-                    count = 1
-                };
-                await database.InsertAsync(product);
+            {
+                ProductId = _ProductId,
+                Email = _email,
+                Count = 1
+            };
+            await database.InsertAsync(product);
             }
             else
             {
                 await UpdateProduct(_email, _ProductId, "+");
             }
-            
+
         }
 
         public static async Task UpdateProduct(string _email, int _ProductId, string operation)
         {
+            database = await Database.Init(database);
             var result = await getProductsByUserIdAndProductId(_email, _ProductId);
             if (operation == "+")
-                result[0].count++;
+                result[0].Count++;
             else if (operation == "-")
             {
-                if (result[0].count == 1)
+                if (result[0].Count == 1)
                     return;
                 else
-                result[0].count--;
+                result[0].Count--;
             }
             await database.UpdateAsync(result[0]);
         }

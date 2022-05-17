@@ -12,6 +12,7 @@ namespace Raneen.Services
     {
         public const string ProductsURL = "https://student.valuxapps.com/api/categories/";
         public const string CategoryURL = "https://student.valuxapps.com/api/categories";
+        public const string ProductURL = "https://student.valuxapps.com/api/products";
         public const string BannersURL = "https://student.valuxapps.com/api/banners";
         public const string HomeURL = "https://student.valuxapps.com/api/home";
 
@@ -25,11 +26,16 @@ namespace Raneen.Services
         }
         public async Task<cat> GetProducts(string id)
         {
-            string allProductsasString = await httpClient.GetStringAsync(ProductsURL + id);
+            string allProductsPerCategory = await httpClient.GetStringAsync(ProductsURL + id);
+            cat allProducts = JsonConvert.DeserializeObject<cat>(allProductsPerCategory);
+            return allProducts;
+        }
+        public async Task<cat> GetAllProducts()
+        {
+            string allProductsasString = await httpClient.GetStringAsync(ProductURL);
             cat allProducts = JsonConvert.DeserializeObject<cat>(allProductsasString);
             return allProducts;
         }
-
         public async Task<Banners> GetBanners()
         {
             string allBannersasString = await httpClient.GetStringAsync(BannersURL);

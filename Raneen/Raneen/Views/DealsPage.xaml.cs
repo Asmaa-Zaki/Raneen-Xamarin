@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using Raneen.Models;
 using Raneen.Services;
+using Syncfusion.XForms.Buttons;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -77,9 +78,19 @@ namespace Raneen.Views
             }
         }
 
-        private void AddToCart(object sender, EventArgs e)
+        private async void AddToCart(object sender, EventArgs e)
         {
-
+            if (Application.Current.Properties.ContainsKey("Email"))
+            {
+                var product = (sender as SfButton).CommandParameter as ProductModel;
+                var email = Application.Current.Properties["Email"].ToString();
+                await UserCart.AddProductToCart(email, product.id);
+                var v = await UserCart.getProductsByUserIdAndProductId(email, product.id);
+            }
+            else
+            {
+                await DisplayAlert("Warning", "You must sign in first", "Cancel");
+            }
         }
     }
 }

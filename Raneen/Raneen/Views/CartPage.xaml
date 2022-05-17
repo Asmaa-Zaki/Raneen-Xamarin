@@ -36,11 +36,11 @@
                                         <Image Source="{Binding image}" Margin="10" HeightRequest="80" WidthRequest="80" BackgroundColor="Black"/>
                                     </StackLayout>
                                     <StackLayout Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="6" >
-                                        <Label Margin="0,26,0,0" Text="{Binding name}"
+                                        <Label Margin="0,26,0,0" Text="{Binding price}"
                                             TextColor="Black"/>
                                         <StackLayout Orientation="Horizontal">
                                             <Label Text="EGP" TextColor="Red" FontAttributes="Bold"/>
-                                            <Label Text="{Binding price}" TextColor="Red" FontAttributes="Bold"/>
+                                            <Label Text="{Binding old_price}" TextColor="Red" FontAttributes="Bold"/>
                                         </StackLayout>
                                     </StackLayout>
 
@@ -50,7 +50,7 @@
                                             </TapGestureRecognizer>
                                         </buttons:SfButton.GestureRecognizers>
                                     </buttons:SfButton>
-                                    <Label Text="{Binding id}" TextColor="Black" Grid.Row="3" Grid.Column="4" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+                                    <Label Text="{Binding count}" TextColor="Black" Grid.Row="3" Grid.Column="4" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
                                     <buttons:SfButton CommandParameter="{Binding .}" Margin="2, -2"  Grid.Row="3" Grid.Column="5" Clicked="addProduct" FontAttributes="Bold" Text="+" CornerRadius="5" BackgroundColor="DarkSlateGray">
                                         <buttons:SfButton.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="addProduct">

@@ -1,4 +1,5 @@
 ﻿using Raneen.Models;
+using Raneen.Services;
 using Syncfusion.XForms.Buttons;
 using System;
 using System.Collections.Generic;
@@ -17,26 +18,31 @@ namespace Raneen.Views
     { 
         bool emptyCart;
         int newId;
-
         public CartPage()
         {
             InitializeComponent();            
+          
         }
-        ObservableCollection<ProductModel> cartItems = new ObservableCollection<ProductModel>();
+        ObservableCollection<ProductModel> cartItems;
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
-            cartItems.Add(new ProductModel() { id = 1, name = "fvbbv ghgh ghh bhjbjnhb hjgjgj mghjg jghjgj jghjhgj jhgjg", price = 15.00, });
-            cartItems.Add(new ProductModel() { id = 2, name = "s", price = 1, });
-            cartItems.Add(new ProductModel() {id = 3, name = "s", price = 1 });
-            cartItems.Add(new ProductModel() { id = 4, name = "s", price = 1, });
-            TotalCost.Text = cartItems.Sum(item => item.price).ToString();
+            Requests request = new Requests();
+            var productsInCart = await UserCart.getProductsByUserId(Application.Current.Properties["Email"].ToString());
+            var allProducts = (await request.GetAllProducts()).data.data;
+            cartItems = new ObservableCollection<ProductModel>();
+            foreach (var product in productsInCart)
+            {
+                ProductModel p = allProducts.FirstOrDefault(x => x.id == product.ProductId);
+                p.count = product.Count;
+                cartItems.Add(p);
+            }
 
-            base.OnAppearing();
-            if(cartItems.ToList().Count()> 0)
+            if (cartItems.ToList().Count()> 0)
             {
                 emptyCart = false;
                 listView.ItemsSource = cartItems;
+                TotalCost.Text = cartItems.Sum(item => item.price*item.count).ToString();
             }
             else
             {
@@ -48,19 +54,25 @@ namespace Raneen.Views
 
        
 
-        private void removeProduct(object sender, EventArgs e)
+        private async void removeProduct(object sender, EventArgs e)
         {
-            newId = int.Parse(((sender as SfButton).CommandParameter as ProductModel).id.ToString());
-            int oldId = newId;
-            newId = newId - 1;
-            var product = cartItems.FirstOrDefault(item => item.id == oldId);
-            if (product != null) { product.id = newId; }
-            for (int i = 0; i < cartItems.Count; i++)
-            {
-                if (cartItems[i].id == oldId)
-                    cartItems[i] = product;
-            }
-            DisplayAlert(newId.ToString(), cartItems[0].id.ToString(), "ok", "cancel");
+            var productModel = (sender as SfButton).CommandParameter as ProductModel;
+            await UserCart.UpdateProduct(Application.Current.Properties["Email"].ToString(), productModel.id, "-");
+            //await Product.UpdateProduct(productModel, "+");
+            var product = cartItems.FirstOrDefault(x => x.id == productModel.id);
+            if (product.count > 1)
+                product.count--;
+            //newId = int.Parse(((sender as SfButton).CommandParameter as ProductModel).id.ToString());
+            //int oldId = newId;
+            //newId = newId - 1;
+            //var product = cartItems.FirstOrDefault(item => item.id == oldId);
+            //if (product != null) { product.id = newId; }
+            //for (int i = 0; i < cartItems.Count; i++)
+            //{
+            //    if (cartItems[i].id == oldId)
+            //        cartItems[i] = product;
+            //}
+            //DisplayAlert(newId.ToString(), cartItems[0].id.ToString(), "ok", "cancel");
         }
 
         private void itemTaped(object sender, ItemTappedEventArgs e)
@@ -73,26 +85,30 @@ namespace Raneen.Views
             DisplayAlert("HGSGG", "", "Ok");
         }
 
-        private void remove(object sender, EventArgs e)
+        private async void remove(object sender, EventArgs e)
         {
-            DisplayAlert("Remove", "", "ok");
+            DisplayAlert("Remove", "Are you Sure", "OK");
         }
 
-        private void addProduct(object sender, EventArgs e)
+        private async void addProduct(object sender, EventArgs e)
         {
-           // Console.WriteLine(((sender as SfButton).CommandParameter as Items).id);
-            newId= int.Parse(((sender as SfButton).CommandParameter as ProductModel).id.ToString());
-            int oldId = newId;
-            newId = newId + 1;
-            var product = cartItems.FirstOrDefault(item => item.id == newId);
-            if (product != null) { product.id = newId; }
-            for(int i=0; i<cartItems.Count; i++)
-            {
-                if (cartItems[i].id == oldId)
-                    cartItems[i] = product;
-            }
-            DisplayAlert(newId.ToString(), cartItems[0].id.ToString(),"ok", "cancel");
-            //DisplayAlert("saaaaaaaaaaaaad", "ok", "cancel");
+            var productModel = (sender as SfButton).CommandParameter as ProductModel;
+            await UserCart.UpdateProduct(Application.Current.Properties["Email"].ToString(), productModel.id, "+");
+            var product = cartItems.FirstOrDefault(x => x.id == productModel.id);
+                product.count++;
+            //// Console.WriteLine(((sender as SfButton).CommandParameter as Items).id);
+            // newId= int.Parse(((sender as SfButton).CommandParameter as ProductModel).id.ToString());
+            // int oldId = newId;
+            // newId = newId + 1;
+            // var product = cartItems.FirstOrDefault(item => item.id == newId);
+            // if (product != null) { product.id = newId; }
+            // for(int i=0; i<cartItems.Count; i++)
+            // {
+            //     if (cartItems[i].id == oldId)
+            //         cartItems[i] = product;
+            // }
+            // DisplayAlert(newId.ToString(), cartItems[0].id.ToString(),"ok", "cancel");
+            // //DisplayAlert("saaaaaaaaaaaaad", "ok", "cancel");
         }
 
         private void itemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
