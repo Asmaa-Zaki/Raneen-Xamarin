@@ -27,26 +27,30 @@ namespace Raneen.Views
 
         protected async override void OnAppearing()
         {
-            Requests request = new Requests();
-            var productsInCart = await UserCart.getProductsByUserId(Application.Current.Properties["Email"].ToString());
-            var allProducts = (await request.GetAllProducts()).data.data;
-            cartItems = new ObservableCollection<ProductModel>();
-            foreach (var product in productsInCart)
-            {
-                ProductModel p = allProducts.FirstOrDefault(x => x.id == product.ProductId);
-                p.count = product.Count;
-                cartItems.Add(p);
-            }
 
-            if (cartItems.ToList().Count()> 0)
+            if (Application.Current.Properties.ContainsKey("Email"))
             {
-                emptyCart = false;
-                listView.ItemsSource = cartItems;
-                TotalCost.Text = cartItems.Sum(item => item.price*item.count).ToString();
-            }
-            else
-            {
-                emptyCart= true;
+                Requests request = new Requests();
+                var productsInCart = await UserCart.getProductsByUserId(Application.Current.Properties["Email"].ToString());
+                var allProducts = (await request.GetAllProducts()).data.data;
+                cartItems = new ObservableCollection<ProductModel>();
+                foreach (var product in productsInCart)
+                {
+                    ProductModel p = allProducts.FirstOrDefault(x => x.id == product.ProductId);
+                    p.count = product.Count;
+                    cartItems.Add(p);
+                }
+
+                if (cartItems.ToList().Count() > 0)
+                {
+                    emptyCart = false;
+                    listView.ItemsSource = cartItems;
+                    TotalCost.Text = cartItems.Sum(item => item.price * item.count).ToString();
+                }
+                else
+                {
+                    emptyCart = true;
+                }
             }
             emptyCard.IsVisible = emptyCart;
             notEmptyCard.IsVisible = !emptyCart;
