@@ -24,10 +24,65 @@ namespace Raneen.Views
           
         }
         ObservableCollection<ProductModel> cartItems;
+        ObservableCollection<ProductModel> updatedCartItem;
 
-        protected async override void OnAppearing()
+        protected override async void OnAppearing()
+        {
+            Load();
+        }
+
+       
+
+        private async void removeProduct(object sender, EventArgs e)
+        {
+            var productModel = (sender as SfButton).CommandParameter as ProductModel;
+            await UserCart.UpdateProduct(Application.Current.Properties["Email"].ToString(), productModel.id, "-");
+            //await Product.UpdateProduct(productModel, "+");
+            var product = cartItems.FirstOrDefault(x => x.id == productModel.id);
+            if (product.count > 1)
+                product.count--;
+            Load();
+        }
+
+        private void itemTaped(object sender, ItemTappedEventArgs e)
         {
 
+        }
+
+        private void show(object sender, EventArgs e)
+        {
+            DisplayAlert("HGSGG", "", "Ok");
+        }
+
+        private async void remove(object sender, EventArgs e)
+        {
+            DisplayAlert("Remove", "Are you Sure", "OK");
+        }
+
+        private async void addProduct(object sender, EventArgs e)
+        {
+            var productModel = (sender as SfButton).CommandParameter as ProductModel;
+            await UserCart.UpdateProduct(Application.Current.Properties["Email"].ToString(), productModel.id, "+");
+            var product = cartItems.FirstOrDefault(x => x.id == productModel.id);
+                product.count++;
+            Load();
+        }
+
+        private void itemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            if(e.ItemData == null)
+            {
+                return;
+            }
+            else
+            {
+                var product = e.ItemData as ProductModel;
+                DisplayAlert("", product.name, "ok", "cancel");
+            }
+        }
+
+        async void Load()
+        {
             if (Application.Current.Properties.ContainsKey("Email"))
             {
                 Requests request = new Requests();
@@ -54,78 +109,6 @@ namespace Raneen.Views
             }
             emptyCard.IsVisible = emptyCart;
             notEmptyCard.IsVisible = !emptyCart;
-        }
-
-       
-
-        private async void removeProduct(object sender, EventArgs e)
-        {
-            var productModel = (sender as SfButton).CommandParameter as ProductModel;
-            await UserCart.UpdateProduct(Application.Current.Properties["Email"].ToString(), productModel.id, "-");
-            //await Product.UpdateProduct(productModel, "+");
-            var product = cartItems.FirstOrDefault(x => x.id == productModel.id);
-            if (product.count > 1)
-                product.count--;
-            //newId = int.Parse(((sender as SfButton).CommandParameter as ProductModel).id.ToString());
-            //int oldId = newId;
-            //newId = newId - 1;
-            //var product = cartItems.FirstOrDefault(item => item.id == oldId);
-            //if (product != null) { product.id = newId; }
-            //for (int i = 0; i < cartItems.Count; i++)
-            //{
-            //    if (cartItems[i].id == oldId)
-            //        cartItems[i] = product;
-            //}
-            //DisplayAlert(newId.ToString(), cartItems[0].id.ToString(), "ok", "cancel");
-        }
-
-        private void itemTaped(object sender, ItemTappedEventArgs e)
-        {
-
-        }
-
-        private void show(object sender, EventArgs e)
-        {
-            DisplayAlert("HGSGG", "", "Ok");
-        }
-
-        private async void remove(object sender, EventArgs e)
-        {
-            DisplayAlert("Remove", "Are you Sure", "OK");
-        }
-
-        private async void addProduct(object sender, EventArgs e)
-        {
-            var productModel = (sender as SfButton).CommandParameter as ProductModel;
-            await UserCart.UpdateProduct(Application.Current.Properties["Email"].ToString(), productModel.id, "+");
-            var product = cartItems.FirstOrDefault(x => x.id == productModel.id);
-                product.count++;
-            //// Console.WriteLine(((sender as SfButton).CommandParameter as Items).id);
-            // newId= int.Parse(((sender as SfButton).CommandParameter as ProductModel).id.ToString());
-            // int oldId = newId;
-            // newId = newId + 1;
-            // var product = cartItems.FirstOrDefault(item => item.id == newId);
-            // if (product != null) { product.id = newId; }
-            // for(int i=0; i<cartItems.Count; i++)
-            // {
-            //     if (cartItems[i].id == oldId)
-            //         cartItems[i] = product;
-            // }
-            // DisplayAlert(newId.ToString(), cartItems[0].id.ToString(),"ok", "cancel");
-            // //DisplayAlert("saaaaaaaaaaaaad", "ok", "cancel");
-        }
-
-        private void itemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
-        {
-            if(e.ItemData == null)
-            {
-                return;
-            }
-            else
-            {
-                var product = e.ItemData as ProductModel;
-                DisplayAlert("", product.name, "ok", "cancel");
-            }
         }
     }
 }
